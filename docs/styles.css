@@ -910,18 +910,18 @@ body:not(.cfgPage) .settingsBtn {
 body:not(.cfgPage) #closePanelBtn,
 body:not(.cfgPage) #closePanelBtn.btn-range-cancel,
 body:not(.cfgPage) #closePanelBtn.btn-quick-cancel {
-  background: #d88a96 !important;
-  color: #ffffff !important;
-  border: 1px solid #ebb0b8 !important;
-  box-shadow: 0 2px 8px rgba(132, 45, 65, 0.18) !important;
+  background: #e7aab3 !important;
+  color: #6f2434 !important;
+  border: 1px solid #f0c4cb !important;
+  box-shadow: 0 2px 8px rgba(132, 45, 65, 0.14) !important;
 }
 
 body:not(.cfgPage) #closePanelBtn:hover:not(:disabled),
 body:not(.cfgPage) .btn-range-cancel:hover:not(:disabled),
 body:not(.cfgPage) .btn-quick-cancel:hover:not(:disabled) {
-  background: #e59ca7 !important;
-  color: #ffffff !important;
-  border-color: #f0bcc3 !important;
+  background: #edb6be !important;
+  color: #6f2434 !important;
+  border-color: #f3cbd1 !important;
 }
 
 .hint {
