@@ -30,14 +30,10 @@ const LAYOUT_PROFILE_BY_NAME = {
     configPanelHeight: 112,
   },
 };
-const WIDE_LAYOUT_MIN_WIDTH = 360;
 
 let fp = null;
 let unregisterParamHandlers = [];
 let activeLayoutProfileName = "";
-let layoutResizeRafId = 0;
-let layoutResizeObserver = null;
-let unregisterDashboardLayoutListener = null;
 
 let isConfigOpen = false;
 let isCalendarOpen = false;
@@ -113,21 +109,8 @@ function getLayoutProfileOverride() {
   return LAYOUT_PROFILE_BY_NAME[value] ? value : "";
 }
 
-function getContainerRect() {
-  const root = document.documentElement;
-  const body = document.body;
-  const width = Math.round(root?.clientWidth || body?.clientWidth || 0);
-  const height = Math.round(root?.clientHeight || body?.clientHeight || 0);
-
-  return { width, height };
-}
-
 function resolveLayoutProfileName() {
-  const forcedProfile = getLayoutProfileOverride();
-  if (forcedProfile) return forcedProfile;
-
-  const { width } = getContainerRect();
-  return width >= WIDE_LAYOUT_MIN_WIDTH ? "wide" : "compact";
+  return getLayoutProfileOverride() || "wide";
 }
 
 function getActiveLayoutProfile() {
@@ -176,28 +159,6 @@ async function syncLayoutProfile() {
   }
 
   syncOpenStateClasses();
-}
-
-function bindLayoutProfileResize() {
-  const requestSync = () => {
-    if (layoutResizeRafId) cancelAnimationFrame(layoutResizeRafId);
-
-    layoutResizeRafId = requestAnimationFrame(() => {
-      layoutResizeRafId = 0;
-      void syncLayoutProfile();
-    });
-  };
-
-  window.addEventListener("resize", requestSync);
-
-  if ("ResizeObserver" in window) {
-    layoutResizeObserver = new ResizeObserver(() => {
-      requestSync();
-    });
-
-    if (document.documentElement) layoutResizeObserver.observe(document.documentElement);
-    if (document.body) layoutResizeObserver.observe(document.body);
-  }
 }
 
 async function getDashboard() {
@@ -1508,13 +1469,6 @@ async function render() {
 
 async function init() {
   await tableau.extensions.initializeAsync();
-  bindLayoutProfileResize();
-
-  const dash = await getDashboard();
-  unregisterDashboardLayoutListener = dash.addEventListener(
-    tableau.TableauEventType.DashboardLayoutChanged,
-    async () => { await syncLayoutProfile(); }
-  );
 
   tableau.extensions.settings.addEventListener(
     tableau.TableauEventType.SettingsChanged,
