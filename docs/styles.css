@@ -1058,27 +1058,28 @@ body[data-layout-profile="compact"] .rangeBar {
   height: var(--range-bar-height);
   display: grid;
   grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
   align-content: start;
-  gap: 6px;
-  padding: 8px;
+  gap: 5px;
+  padding: 7px 8px 6px;
 }
 
 body[data-layout-profile="compact"] .rangeLine {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 4px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
 }
 
 body[data-layout-profile="compact"] .dateSlot {
   display: grid;
-  grid-template-columns: 30px minmax(0, 1fr);
+  grid-template-columns: 24px minmax(0, 1fr);
   align-items: center;
-  gap: 6px;
+  gap: 4px;
 }
 
 body[data-layout-profile="compact"] .topActions {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 4px;
   margin-left: 0;
 }
@@ -1096,12 +1097,12 @@ body[data-layout-profile="compact"] #closePanelBtn {
 }
 
 body[data-layout-profile="compact"] .label {
-  font-size: 11px;
+  font-size: 10px;
 }
 
 body[data-layout-profile="compact"] .dateValue {
-  font-size: 11px;
-  padding: 3px 6px;
+  font-size: 10px;
+  padding: 3px 5px;
 }
 
 body[data-layout-profile="compact"].panel-open .rangeBar {
