@@ -869,9 +869,10 @@ body:not(.cfgPage) .btn-primary-inactive:disabled {
 
 body:not(.cfgPage) .btn-range-cancel,
 body:not(.cfgPage) .btn-quick-cancel {
-  background: #7d5d8f;
-  color: #ffffff;
-  border-color: #9f83af;
+  background: #8a639d !important;
+  color: #ffffff !important;
+  border-color: #b18ac2 !important;
+  box-shadow: 0 2px 8px rgba(61, 24, 86, 0.22) !important;
 }
 
 body:not(.cfgPage) .settingsBtn {
@@ -880,6 +881,23 @@ body:not(.cfgPage) .settingsBtn {
   border: 1px solid #7f96c0;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+}
+
+body:not(.cfgPage) #closePanelBtn,
+body:not(.cfgPage) #closePanelBtn.btn-range-cancel,
+body:not(.cfgPage) #closePanelBtn.btn-quick-cancel {
+  background: #8a639d !important;
+  color: #ffffff !important;
+  border: 1px solid #b18ac2 !important;
+  box-shadow: 0 2px 8px rgba(61, 24, 86, 0.22) !important;
+}
+
+body:not(.cfgPage) #closePanelBtn:hover:not(:disabled),
+body:not(.cfgPage) .btn-range-cancel:hover:not(:disabled),
+body:not(.cfgPage) .btn-quick-cancel:hover:not(:disabled) {
+  background: #9a73ae !important;
+  color: #ffffff !important;
+  border-color: #c4a0d1 !important;
 }
 
 .hint {
