@@ -825,15 +825,15 @@ body:not(.cfgPage) .btn-range-active:hover:not(:disabled) {
 }
 
 body[data-panel-kind="calendar"]:not(.cfgPage) #rangeModeBtn.btn-range-active {
-  background: #8fa8d8;
+  background: #4f7fe7;
   color: #ffffff;
-  border-color: #aec0e6;
-  box-shadow: 0 2px 8px rgba(45, 77, 132, 0.22);
+  border-color: #4f7fe7;
+  box-shadow: 0 2px 8px rgba(33, 74, 164, 0.28);
 }
 
 body[data-panel-kind="calendar"]:not(.cfgPage) #rangeModeBtn.btn-range-active:hover:not(:disabled) {
-  background: #9db5e2;
-  border-color: #bccced;
+  background: #5d8bf0;
+  border-color: #5d8bf0;
 }
 
 body:not(.cfgPage) .btn-range-inactive,
@@ -855,15 +855,15 @@ body:not(.cfgPage) .btn-quick-active:hover:not(:disabled) {
 }
 
 body[data-panel-kind="quick"]:not(.cfgPage) #quickModeBtn.btn-quick-active {
-  background: #76b792;
+  background: #2f9c67;
   color: #ffffff;
-  border-color: #98cfaf;
-  box-shadow: 0 2px 8px rgba(35, 92, 57, 0.20);
+  border-color: #2f9c67;
+  box-shadow: 0 2px 8px rgba(22, 92, 56, 0.24);
 }
 
 body[data-panel-kind="quick"]:not(.cfgPage) #quickModeBtn.btn-quick-active:hover:not(:disabled) {
-  background: #86c3a0;
-  border-color: #a9d8bc;
+  background: #37ab72;
+  border-color: #37ab72;
 }
 
 body:not(.cfgPage) .btn-quick-inactive,
