@@ -47,6 +47,7 @@ let pendingStartDate = null;
 let pendingEndDate = null;
 let originalStartDate = null;
 let originalEndDate = null;
+let hasAppliedInitialTodayDefaults = false;
 
 let calendarMode = "range"; // "start" | "end" | "range"
 let hasUserSelectionInCurrentOpen = false;
@@ -920,6 +921,37 @@ function updatePrimaryModeButton() {
   }
 }
 
+async function ensureInitialTodayDefaults(settings) {
+  if (hasAppliedInitialTodayDefaults) return;
+  if (!settings.startParam) return;
+  if (settings.kind === "range" && !settings.endParam) return;
+
+  const today = startOfDay(new Date());
+  const map = await getParametersMap();
+
+  const pStart = map.get(settings.startParam);
+  if (!pStart) return;
+
+  const currentStart = getParamDateValue(pStart);
+  let currentEnd = currentStart;
+
+  if (settings.kind === "range") {
+    const pEnd = map.get(settings.endParam);
+    if (!pEnd) return;
+    currentEnd = getParamDateValue(pEnd);
+  }
+
+  const isAlreadyToday = settings.kind === "single"
+    ? isSameDate(currentStart, today)
+    : isSameDate(currentStart, today) && isSameDate(currentEnd, today);
+
+  if (!isAlreadyToday) {
+    await applyDatesToParameters(settings, today, today);
+  }
+
+  hasAppliedInitialTodayDefaults = true;
+}
+
 function updateQuickModeButton() {
   const btn = qs("quickModeBtn");
   if (!btn) return;
@@ -1562,6 +1594,11 @@ async function render() {
   bindHandlers();
   updateDateFieldLayout();
   updateQuickPanelVisibility();
+
+  if (settings.startParam) {
+    await ensureInitialTodayDefaults(settings);
+  }
+
   await bindParameterChangedListeners(settings);
 
   if (settings.startParam) {
