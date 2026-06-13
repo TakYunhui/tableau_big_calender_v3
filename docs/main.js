@@ -12,6 +12,39 @@ const DEFAULTS = {
   format: "Y. n. j",
 };
 
+const DASHBOARD_NAV_ITEMS = [
+  {
+    key: "breaking",
+    menuLabel: "속보",
+    dashboardName: "속보",
+    url: "https://prod-apnortheast-a.online.tableau.com/t/kisco/views/_17812256452380/1_",
+  },
+  {
+    key: "sales",
+    menuLabel: "영업",
+    dashboardName: "영업 메인",
+    url: "https://prod-apnortheast-a.online.tableau.com/t/kisco/views/2_17805514108510/1_",
+  },
+  {
+    key: "production",
+    menuLabel: "생산",
+    dashboardName: "생산 현황",
+    url: "https://prod-apnortheast-a.online.tableau.com/t/kisco/views/__17809950247560/1_",
+  },
+  {
+    key: "purchase",
+    menuLabel: "구매",
+    dashboardName: "구매 현황",
+    url: "https://prod-apnortheast-a.online.tableau.com/t/kisco/views/4_/1_",
+  },
+  {
+    key: "finance",
+    menuLabel: "손익재무인사",
+    dashboardName: "손익재무인사 메인",
+    url: "https://prod-apnortheast-a.online.tableau.com/t/kisco/views/_V2_17811391757600/1_",
+  },
+];
+
 const LAYOUT_PROFILE_BY_NAME = {
   wide: {
     frameWidth: 420,
@@ -66,6 +99,25 @@ function setHint(msg) {
 function setCfgHint(msg) {
   const el = qs("cfgHint");
   if (el) el.textContent = msg || "";
+}
+
+function renderDashboardNav() {
+  const listEl = qs("dashboardNavList");
+  if (!listEl) return;
+
+  listEl.innerHTML = "";
+
+  DASHBOARD_NAV_ITEMS.forEach((item) => {
+    const link = document.createElement("a");
+    link.className = "dashboardNavLink";
+    link.href = item.url;
+    link.target = "_top";
+    link.textContent = item.menuLabel;
+    link.title = `${item.menuLabel} - ${item.dashboardName}`;
+    link.dataset.dashboardKey = item.key;
+    link.dataset.dashboardName = item.dashboardName;
+    listEl.appendChild(link);
+  });
 }
 
 function showToast(msg) {
@@ -1535,6 +1587,7 @@ async function render() {
   await syncLayoutProfile();
 
   const settings = loadSettings();
+  renderDashboardNav();
 
   const settingsBtn = qs("settingsBtn");
   if (settingsBtn) settingsBtn.style.display = isAuthoringMode() ? "inline-flex" : "none";

@@ -6,31 +6,37 @@
   <title>조회기간</title>
 
   <link rel="stylesheet" href="./lib/flatpickr.min.css" />
-  <link rel="stylesheet" href="./styles.css?v=20260429_18" />
+  <link rel="stylesheet" href="./styles.css?v=20260613_01" />
 </head>
 
 <body>
   <div id="rangeBar" class="rangeBar">
-    <div class="rangeLine" id="rangeLine">
-      <div class="dateSlot" id="startSlot">
-        <span class="label" id="startLabel">시작</span>
-        <span class="value dateValue" id="startText">-</span>
+    <nav id="dashboardNav" class="dashboardNav" aria-label="대시보드 메뉴">
+      <div id="dashboardNavList" class="dashboardNavList"></div>
+    </nav>
+
+    <div id="rangeBarMain" class="rangeBarMain">
+      <div class="rangeLine" id="rangeLine">
+        <div class="dateSlot" id="startSlot">
+          <span class="label" id="startLabel">시작</span>
+          <span class="value dateValue" id="startText">-</span>
+        </div>
+
+        <span class="sep" id="dateSep">|</span>
+
+        <div class="dateSlot" id="endSlot">
+          <span class="label" id="endLabel">종료</span>
+          <span class="value dateValue" id="endText">-</span>
+        </div>
       </div>
 
-      <span class="sep" id="dateSep">|</span>
-
-      <div class="dateSlot" id="endSlot">
-        <span class="label" id="endLabel">종료</span>
-        <span class="value dateValue" id="endText">-</span>
+      <div class="topActions">
+        <button id="rangeModeBtn" class="miniBtn" type="button">기간</button>
+        <button id="quickModeBtn" class="miniBtn" type="button">빠른선택</button>
+        <button id="applyBtn" class="miniBtn" type="button">적용</button>
+        <button id="closePanelBtn" class="miniBtn btn-range-cancel" type="button">닫기</button>
+        <button id="settingsBtn" class="settingsBtn" type="button" aria-label="설정">⚙</button>
       </div>
-    </div>
-
-    <div class="topActions">
-      <button id="rangeModeBtn" class="miniBtn" type="button">기간</button>
-      <button id="quickModeBtn" class="miniBtn" type="button">빠른선택</button>
-      <button id="applyBtn" class="miniBtn" type="button">적용</button>
-      <button id="closePanelBtn" class="miniBtn btn-range-cancel" type="button">닫기</button>
-      <button id="settingsBtn" class="settingsBtn" type="button" aria-label="설정">⚙</button>
     </div>
   </div>
 
@@ -72,7 +78,7 @@
       </div>
 
       <div class="cfgRow">
-        <label class="cfgLabel" for="format">표시 포맷</label>
+        <label class="cfgLabel" for="format">표시 형식</label>
         <input id="format" class="cfgInput" type="text" placeholder="예: Y. n. j" />
       </div>
 
@@ -91,6 +97,6 @@
 
   <script src="./lib/flatpickr.min.js"></script>
   <script src="https://extensions.tableauusercontent.com/resources/tableau.extensions.1.latest.min.js"></script>
-  <script src="./main.js?v=20260429_18"></script>
+  <script src="./main.js?v=20260613_01"></script>
 </body>
 </html>

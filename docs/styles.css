@@ -16,16 +16,73 @@ html, body {
 
 .rangeBar {
   width: var(--frame-width);
-  height: var(--range-bar-height);
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  align-items: stretch;
   justify-content: flex-start;
-  gap: 2px;
-  padding: 0 4px;
+  gap: 3px;
+  padding: 3px 4px 2px;
   background: transparent;
   position: relative;
   box-sizing: border-box;
   overflow: hidden;
+}
+
+.rangeBarMain {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4px;
+  min-width: 0;
+}
+
+.dashboardNav {
+  width: 100%;
+  min-width: 0;
+}
+
+.dashboardNavList {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.dashboardNavList::-webkit-scrollbar {
+  display: none;
+}
+
+.dashboardNavLink {
+  height: 16px;
+  padding: 0 6px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.10);
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 9px;
+  font-weight: 800;
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color 0.16s ease,
+    border-color 0.16s ease,
+    color 0.16s ease,
+    transform 0.16s ease;
+}
+
+.dashboardNavLink:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.34);
+  transform: translateY(-1px);
 }
 
 .rangeLine {
@@ -755,6 +812,7 @@ body:not(.cfgPage) {
 }
 
 .rangeBar,
+.dashboardNav,
 .quickHost,
 .calHost,
 .cfgPanel,
@@ -794,6 +852,17 @@ body:not(.cfgPage) .dateValue {
   border-radius: 8px;
   border: 1px solid #d6deed;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.14);
+}
+
+body:not(.cfgPage) .dashboardNavLink {
+  border-color: rgba(169, 191, 232, 0.44);
+  background: rgba(240, 245, 255, 0.14);
+  color: rgba(255, 255, 255, 0.96);
+}
+
+body:not(.cfgPage) .dashboardNavLink:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(205, 218, 244, 0.72);
 }
 
 body:not(.cfgPage) .dateValue.pending {
@@ -959,9 +1028,21 @@ body.panel-open .hint {
 
 body[data-layout-profile="wide"] .rangeBar {
   height: var(--range-bar-height);
+  padding: 4px 8px 5px;
+  gap: 4px;
+}
+
+body[data-layout-profile="wide"] .dashboardNavLink {
+  height: 16px;
+  padding: 0 7px;
+  font-size: 9px;
+}
+
+body[data-layout-profile="wide"] .rangeBarMain {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 6px;
 }
 
 body[data-layout-profile="wide"] .rangeLine {
@@ -1065,8 +1146,21 @@ body[data-layout-profile="compact"] .rangeBar {
   grid-template-columns: 1fr;
   grid-template-rows: auto auto;
   align-content: start;
-  gap: 5px;
-  padding: 7px 8px 6px;
+  gap: 4px;
+  padding: 5px 8px 5px;
+}
+
+body[data-layout-profile="compact"] .dashboardNavLink {
+  height: 15px;
+  padding: 0 6px;
+  font-size: 8px;
+}
+
+body[data-layout-profile="compact"] .rangeBarMain {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+  gap: 4px;
 }
 
 body[data-layout-profile="compact"] .rangeLine {
@@ -1111,11 +1205,15 @@ body[data-layout-profile="compact"] .dateValue {
 }
 
 body[data-layout-profile="compact"].panel-open .rangeBar {
-  height: 36px;
+  height: 44px;
   grid-template-columns: 1fr;
+  grid-template-rows: auto 1fr;
+  gap: 3px;
+  padding: 4px 8px 4px;
+}
+
+body[data-layout-profile="compact"].panel-open .rangeBarMain {
   grid-template-rows: 1fr;
-  gap: 0;
-  padding: 6px 8px 4px;
 }
 
 body[data-layout-profile="compact"].panel-open .rangeLine {
@@ -1139,12 +1237,12 @@ body[data-layout-profile="compact"] .quickHost.open,
 body[data-layout-profile="compact"] .calHost.open,
 body[data-layout-profile="compact"] .cfgPanel.open {
   position: absolute;
-  top: 36px;
+  top: 44px;
   right: 0;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: calc(100% - 36px);
+  height: calc(100% - 44px);
   z-index: 18;
 }
 
