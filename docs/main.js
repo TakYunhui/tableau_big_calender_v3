@@ -1157,6 +1157,8 @@ function getQuickRange(settings, type) {
       case "today":
         return getTodayRange();
       case "yesterday":
+        return getYesterdayRange();
+      case "thisMonth":
         return getPreviousMonthRange();
       default:
         return null;
@@ -1509,13 +1511,16 @@ function updateQuickPanelVisibility() {
   const ytdBtn = document.querySelector('[data-quick="ytd"]');
 
   if (settings.kind === "single") {
-    if (todayBtn) todayBtn.textContent = "이번달";
+    if (todayBtn) todayBtn.textContent = "오늘";
     if (yesterdayBtn) {
-      yesterdayBtn.textContent = "전월";
+      yesterdayBtn.textContent = "어제";
       yesterdayBtn.style.display = "";
     }
+    if (monthBtn) {
+      monthBtn.textContent = "전월 말";
+      monthBtn.style.display = "";
+    }
     if (weekBtn) weekBtn.style.display = "none";
-    if (monthBtn) monthBtn.style.display = "none";
     if (ytdBtn) ytdBtn.style.display = "none";
     return;
   } else {
