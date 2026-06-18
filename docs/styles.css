@@ -157,8 +157,8 @@ html, body {
   line-height: 1.1;
   white-space: nowrap;
   word-break: keep-all;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  overflow: visible;
+  text-overflow: clip;
   transition:
     background-color 0.16s ease,
     color 0.16s ease,
@@ -1015,6 +1015,7 @@ body[data-layout-profile="wide"] .topActions {
   align-items: center;
   gap: 3px;
   margin-left: 4px;
+  flex-shrink: 0;
 }
 
 body[data-layout-profile="wide"] .miniBtn {
@@ -1126,7 +1127,7 @@ body[data-layout-profile="compact"] .topActions {
 
 body[data-layout-profile="compact"] .miniBtn {
   width: 100%;
-  min-width: 0;
+  min-width: 34px;
   height: 22px;
   padding: 0 4px;
   font-size: 10px;
