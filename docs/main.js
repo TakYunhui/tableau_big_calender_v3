@@ -491,7 +491,7 @@ function updateDateFieldLayout() {
     if (startSlot) startSlot.style.display = "none";
     if (sep) sep.style.display = "none";
     if (endSlot) endSlot.style.display = "flex";
-    if (endLabel) endLabel.textContent = "기준";
+    if (endLabel) endLabel.textContent = "조회";
     return;
   }
 
