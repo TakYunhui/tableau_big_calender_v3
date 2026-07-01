@@ -334,7 +334,9 @@ html, body {
   background:
     linear-gradient(180deg, rgba(255,255,255,0.98), rgba(249,250,252,0.98));
   padding: 10px 12px 9px;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scrollbar-gutter: stable;
 }
 
 .quickGroups {
@@ -438,13 +440,8 @@ html, body {
   flex: 1 1 auto;
   overflow-x: auto;
   overflow-y: hidden;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  padding-bottom: 1px;
-}
-
-.quickBar::-webkit-scrollbar {
-  display: none;
+  scrollbar-gutter: stable;
+  padding-bottom: 2px;
 }
 
 .quickBtn {
