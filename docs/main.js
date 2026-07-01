@@ -1151,52 +1151,51 @@ function getYtdRange() {
   return { start: startOfDay(start), end: today };
 }
 
-function getReferenceEndDate(settings) {
-  const fallback = startOfDay(new Date());
-  if (settings.kind === "single") {
-    return cloneDate(pendingStartDate || originalStartDate || fallback);
-  }
-
-  return cloneDate(
-    pendingEndDate
-    || originalEndDate
-    || pendingStartDate
-    || originalStartDate
-    || fallback
-  );
+function getTodayDate() {
+  return startOfDay(new Date());
 }
 
-function getYearToReferenceEndRange(referenceEnd) {
-  const end = startOfDay(referenceEnd);
-  const start = new Date(end.getFullYear(), 0, 1);
-  return { start: startOfDay(start), end };
+function getSameMonthDayInYear(baseDate, targetYear) {
+  const base = startOfDay(baseDate);
+  const month = base.getMonth();
+  const day = base.getDate();
+  const lastDay = new Date(targetYear, month + 1, 0).getDate();
+  return startOfDay(new Date(targetYear, month, Math.min(day, lastDay)));
+}
+
+function getYearToTodayRange() {
+  const today = getTodayDate();
+  const start = new Date(today.getFullYear(), 0, 1);
+  return { start: startOfDay(start), end: today };
 }
 
 function getLastMonthFullRange() {
-  const today = startOfDay(new Date());
+  const today = getTodayDate();
   const start = new Date(today.getFullYear(), today.getMonth() - 1, 1);
   const end = new Date(today.getFullYear(), today.getMonth(), 0);
   return { start: startOfDay(start), end: startOfDay(end) };
 }
 
-function getLastYearSameMonthRange(referenceEnd) {
-  const base = startOfDay(referenceEnd);
-  const year = base.getFullYear() - 1;
-  const month = base.getMonth();
+function getLastYearSameMonthRange() {
+  const today = getTodayDate();
+  const year = today.getFullYear() - 1;
+  const month = today.getMonth();
   const start = new Date(year, month, 1);
   const end = new Date(year, month + 1, 0);
   return { start: startOfDay(start), end: startOfDay(end) };
 }
 
-function getLastYearFullRange(referenceEnd) {
-  const year = startOfDay(referenceEnd).getFullYear() - 1;
+function getLastYearYtdRange() {
+  const today = getTodayDate();
+  const year = today.getFullYear() - 1;
   const start = new Date(year, 0, 1);
-  const end = new Date(year, 11, 31);
-  return { start: startOfDay(start), end: startOfDay(end) };
+  const end = getSameMonthDayInYear(today, year);
+  return { start: startOfDay(start), end };
 }
 
-function getQuarterRange(referenceEnd, quarter) {
-  const year = startOfDay(referenceEnd).getFullYear();
+function getQuarterRange(quarter) {
+  const today = getTodayDate();
+  const year = today.getFullYear();
   const startMonth = (quarter - 1) * 3;
   const start = new Date(year, startMonth, 1);
   const end = new Date(year, startMonth + 3, 0);
@@ -1217,8 +1216,6 @@ function getQuickRange(settings, type) {
     }
   }
 
-  const referenceEnd = getReferenceEndDate(settings);
-
   switch (type) {
     case "today":
       return getTodayRange();
@@ -1229,21 +1226,21 @@ function getQuickRange(settings, type) {
     case "thisMonth":
       return getThisMonthRange();
     case "ytd":
-      return getYearToReferenceEndRange(referenceEnd);
+      return getYearToTodayRange();
     case "lastMonth":
       return getLastMonthFullRange();
     case "lastYearSameMonth":
-      return getLastYearSameMonthRange(referenceEnd);
+      return getLastYearSameMonthRange();
     case "lastYear":
-      return getLastYearFullRange(referenceEnd);
+      return getLastYearYtdRange();
     case "q1":
-      return getQuarterRange(referenceEnd, 1);
+      return getQuarterRange(1);
     case "q2":
-      return getQuarterRange(referenceEnd, 2);
+      return getQuarterRange(2);
     case "q3":
-      return getQuarterRange(referenceEnd, 3);
+      return getQuarterRange(3);
     case "q4":
-      return getQuarterRange(referenceEnd, 4);
+      return getQuarterRange(4);
     default:
       return null;
   }
