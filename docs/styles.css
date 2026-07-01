@@ -339,8 +339,8 @@ html, body {
 
 .quickGroups {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 8px 14px;
+  grid-template-columns: minmax(0, 1.34fr) minmax(0, 0.66fr);
+  gap: 8px 10px;
 }
 
 .quickGroup {
@@ -362,13 +362,17 @@ html, body {
   grid-column: 1 / -1;
 }
 
+.quickGroup--month {
+  justify-self: end;
+}
+
 .quickGroupTitle {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
   padding: 0;
   color: #172033;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 900;
   letter-spacing: -0.02em;
   white-space: nowrap;
@@ -428,7 +432,7 @@ html, body {
 .quickBar {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 5px;
   flex-wrap: nowrap;
   min-width: 0;
   flex: 1 1 auto;
@@ -444,13 +448,13 @@ html, body {
 }
 
 .quickBtn {
-  height: 28px;
-  padding: 0 12px;
+  height: 27px;
+  padding: 0 11px;
   border-radius: 999px;
   border: 1px solid var(--quick-accent-border);
   background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(247,250,255,0.96));
   color: var(--quick-accent);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 800;
   letter-spacing: -0.01em;
   cursor: pointer;
@@ -1324,14 +1328,14 @@ body[data-layout-profile="compact"] .quickGroupTitle::before {
 }
 
 body[data-layout-profile="compact"] .quickBar {
-  gap: 5px;
+  gap: 4px;
   justify-content: flex-start;
 }
 
 body[data-layout-profile="compact"] .quickBtn {
-  height: 26px;
-  padding: 0 10px;
-  font-size: 10px;
+  height: 25px;
+  padding: 0 9px;
+  font-size: 9px;
 }
 
 body[data-layout-profile="compact"] .calHost {
