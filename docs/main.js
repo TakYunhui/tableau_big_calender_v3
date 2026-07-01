@@ -1185,12 +1185,12 @@ function getLastYearSameMonthRange() {
   return { start: startOfDay(start), end: startOfDay(end) };
 }
 
-function getLastYearYtdRange() {
+function getLastYearFullRange() {
   const today = getTodayDate();
   const year = today.getFullYear() - 1;
   const start = new Date(year, 0, 1);
-  const end = getSameMonthDayInYear(today, year);
-  return { start: startOfDay(start), end };
+  const end = new Date(year, 11, 31);
+  return { start: startOfDay(start), end: startOfDay(end) };
 }
 
 function getQuarterRange(quarter) {
@@ -1232,7 +1232,7 @@ function getQuickRange(settings, type) {
     case "lastYearSameMonth":
       return getLastYearSameMonthRange();
     case "lastYear":
-      return getLastYearYtdRange();
+      return getLastYearFullRange();
     case "q1":
       return getQuarterRange(1);
     case "q2":
