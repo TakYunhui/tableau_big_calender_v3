@@ -1354,6 +1354,30 @@ body[data-layout-profile="wide"][data-selection-kind="single"] .rangeLine {
   max-width: 152px;
 }
 
+body[data-layout-profile="wide"][data-selection-kind="single"] .rangeBar {
+  grid-template-rows: auto auto auto;
+  gap: 5px;
+}
+
+body[data-layout-profile="wide"][data-selection-kind="single"] .singleDateHelp {
+  display: block;
+  grid-row: 1;
+  min-height: 13px;
+  padding: 0;
+  color: #cfe0ff;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+body[data-layout-profile="wide"][data-selection-kind="single"] .topActions {
+  grid-row: 2;
+}
+
+body[data-layout-profile="wide"][data-selection-kind="single"] .rangeLine {
+  grid-row: 3;
+}
+
 body[data-layout-profile="wide"][data-selection-kind="range"] #startSlot,
 body[data-layout-profile="wide"][data-selection-kind="range"] #endSlot,
 body[data-layout-profile="wide"][data-selection-kind="single"] #endSlot {
@@ -1410,10 +1434,6 @@ body[data-layout-profile="wide"][data-selection-kind="single"] #endText {
   width: 96px;
   min-width: 96px;
   max-width: 96px;
-}
-
-body[data-layout-profile="wide"][data-panel-kind="closed"] .singleDateHelp {
-  display: none;
 }
 
 body[data-layout-profile="wide"][data-panel-kind="closed"] .quickHost,
