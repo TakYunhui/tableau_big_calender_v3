@@ -1467,6 +1467,7 @@ body[data-layout-profile="wide"][data-selection-kind="single"] .rangeLine {
   max-width: 152px;
   grid-row: 3;
   align-self: stretch;
+  justify-self: end;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="single"] .quickHost.open {
@@ -1493,6 +1494,17 @@ body[data-layout-profile="wide"][data-selection-kind="single"] .quickBtn {
   height: 26px;
   padding: 0 8px;
   font-size: 10px;
+}
+
+body[data-layout-profile="wide"][data-selection-kind="single"] .singleDateHelp {
+  justify-self: end;
+  width: max-content;
+  max-width: calc(var(--wide-side-width) - 12px);
+  text-align: right;
+}
+
+body[data-layout-profile="wide"][data-selection-kind="single"] .topActions {
+  justify-self: end;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="range"] #startSlot,
