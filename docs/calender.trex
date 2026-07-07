@@ -4,7 +4,7 @@
           xsi:schemaLocation="http://www.tableau.com/xml/extension_manifest extension_manifest.xsd"
           manifest-version="0.1">
 
-  <dashboard-extension id="com.kisco.bigcalendar" extension-version="1.0.5">
+  <dashboard-extension id="com.kisco.bigcalendar" extension-version="1.0.6">
     <default-locale>ko_KR</default-locale>
 
     <name>Big Calendar Date Picker v3</name>
@@ -12,12 +12,12 @@
 
     <author name="KiscoHoldings"
             email="admin@example.com"
-            website="https://takyunhui.github.io/tableau_big_calender_v3/?v=20260701_05" />
+            website="https://takyunhui.github.io/tableau_big_calender_v3/?v=20260707_01" />
 
     <min-api-version>1.7</min-api-version>
 
     <source-location>
-      <url>https://takyunhui.github.io/tableau_big_calender_v3/?v=20260701_05</url>
+      <url>https://takyunhui.github.io/tableau_big_calender_v3/?v=20260707_01</url>
     </source-location>
 
     <!-- icon 필수라고 뜨니까 무조건 넣음 (1x1 PNG base64) -->
