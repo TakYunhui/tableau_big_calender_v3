@@ -1384,10 +1384,6 @@ body[data-layout-profile="wide"][data-selection-kind="single"] #endText {
   max-width: 96px;
 }
 
-body[data-layout-profile="wide"][data-selection-kind="single"] #closePanelBtn.layout-hidden {
-  display: inline-flex !important;
-}
-
 body[data-layout-profile="wide"][data-panel-kind="closed"] .singleDateHelp {
   display: none;
 }
