@@ -1126,7 +1126,7 @@ body[data-layout-profile="wide"] .rangeBar {
   width: var(--wide-side-width);
   height: 100px;
   display: grid;
-  grid-template-rows: auto auto auto auto;
+  grid-template-rows: auto auto auto;
   align-content: start;
   gap: 3px;
   padding: 4px 6px 0 6px;
@@ -1371,17 +1371,16 @@ body[data-layout-profile="wide"] .quickBtn {
 }
 
 body[data-layout-profile="wide"] .hint {
-  position: static;
+  position: absolute;
   display: block !important;
-  grid-row: 4;
-  left: auto;
+  left: 6px;
   right: auto;
+  bottom: 6px;
   width: auto;
-  max-width: 100%;
-  bottom: auto;
+  max-width: calc(var(--wide-side-width) - 12px);
   margin: 0;
   padding: 0;
-  min-height: 10px;
+  min-height: 0;
   color: rgba(255, 255, 255, 0.78);
   font-size: 10px;
   line-height: 1.1;
@@ -1390,19 +1389,27 @@ body[data-layout-profile="wide"] .hint {
   text-overflow: ellipsis;
 }
 
+body[data-layout-profile="wide"] .hint:empty {
+  display: none !important;
+}
+
 body[data-layout-profile="wide"] .toast {
   position: absolute;
   left: 6px;
   right: auto;
   bottom: auto;
-  top: 87px;
-  width: calc(var(--wide-side-width) - 12px);
-  padding: 0;
-  background: transparent;
-  color: rgba(255, 255, 255, 0.82);
+  bottom: 6px;
+  top: auto;
+  width: auto;
+  max-width: calc(var(--wide-side-width) - 12px);
+  padding: 3px 8px;
+  background: rgba(11, 19, 38, 0.84);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.96);
   font-size: 10px;
   font-weight: 700;
-  border-radius: 0;
+  line-height: 1.1;
+  border-radius: 999px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
