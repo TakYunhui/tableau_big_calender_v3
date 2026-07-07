@@ -1400,7 +1400,7 @@ async function applyPendingDates() {
 
   try {
     isApplying = true;
-    showToast("조회기간 적용 중입니다...");
+    showToast("조회조건 적용 중...");
     updateActionStates();
 
     await applyDatesToParameters(settings, pendingStartDate, finalEnd);
