@@ -29,7 +29,7 @@ const MOCK_DEFAULT_STATE = {
 
 const LAYOUT_PROFILE_BY_NAME = {
   wide: {
-    frameWidth: 515,
+    frameWidth: 570,
     frameHeight: 165,
     rangeBarHeight: 165,
     quickPanelMinHeight: 165,
