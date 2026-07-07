@@ -511,7 +511,8 @@ html, body {
   border: 1px solid rgba(0,0,0,0.14) !important;
   border-radius: 0 !important;
   background: #fff !important;
-  display: block !important;
+  display: flex !important;
+  flex-direction: column !important;
   overflow: hidden !important;
   box-sizing: border-box !important;
 }
@@ -664,6 +665,8 @@ html, body {
   height: auto !important;
   overflow: hidden !important;
   box-sizing: border-box !important;
+  display: flex !important;
+  flex-direction: column !important;
 }
 
 .calHost .flatpickr-days {
@@ -675,7 +678,8 @@ html, body {
   overflow-y: hidden !important;
   overflow-x: hidden !important;
   display: flex !important;
-  align-items: flex-start !important;
+  align-items: stretch !important;
+  flex: 1 1 auto !important;
   box-sizing: border-box !important;
 }
 
@@ -687,9 +691,11 @@ html, body {
   min-height: 102px !important;
   display: flex !important;
   flex-wrap: wrap !important;
-  align-content: flex-start !important;
+  align-content: stretch !important;
   justify-content: flex-start !important;
   box-sizing: border-box !important;
+  border-top: 1px solid rgba(0,0,0,0.10) !important;
+  border-left: 1px solid rgba(0,0,0,0.10) !important;
 }
 
 .calHost .flatpickr-day {
@@ -702,15 +708,15 @@ html, body {
   min-width: 14.2857% !important;
   max-width: 14.2857% !important;
   margin: 0 !important;
-  border: 0 !important;
+  border-top: 0 !important;
+  border-left: 0 !important;
+  border-right: 1px solid rgba(0,0,0,0.10) !important;
+  border-bottom: 1px solid rgba(0,0,0,0.10) !important;
   border-radius: 0 !important;
   background: #fff !important;
   box-sizing: border-box !important;
   font-variant-numeric: tabular-nums;
   letter-spacing: -0.01em;
-  box-shadow:
-    inset -1px 0 0 rgba(0,0,0,0.10),
-    inset 0 -1px 0 rgba(0,0,0,0.10);
 }
 
 .calHost .rangeMode .flatpickr-day {
@@ -728,17 +734,13 @@ html, body {
 }
 
 .calHost .flatpickr-day.today {
-  box-shadow:
-    inset -1px 0 0 rgba(0,0,0,0.10),
-    inset 0 -1px 0 rgba(0,0,0,0.10),
-    inset 0 0 0 1px rgba(49, 112, 245, 0.40) !important;
+  outline: 1px solid rgba(49, 112, 245, 0.40) !important;
+  outline-offset: -1px !important;
 }
 
 .calHost .flatpickr-day.same-date-close {
-  box-shadow:
-    inset -1px 0 0 rgba(0,0,0,0.10),
-    inset 0 -1px 0 rgba(0,0,0,0.10),
-    inset 0 0 0 1px rgba(0,0,0,0.18) !important;
+  outline: 1px solid rgba(0,0,0,0.18) !important;
+  outline-offset: -1px !important;
 }
 
 .calHost .flatpickr-day.startRange,
@@ -747,17 +749,15 @@ html, body {
   background: #3170f5 !important;
   color: #fff !important;
   font-weight: 700 !important;
-  box-shadow:
-    inset -1px 0 0 rgba(255,255,255,0.16),
-    inset 0 -1px 0 rgba(255,255,255,0.16) !important;
+  border-right-color: rgba(255,255,255,0.16) !important;
+  border-bottom-color: rgba(255,255,255,0.16) !important;
 }
 
 .calHost .flatpickr-day.inRange {
   background: rgba(49, 112, 245, 0.13) !important;
   color: rgba(0,0,0,0.9) !important;
-  box-shadow:
-    inset -1px 0 0 rgba(0,0,0,0.06),
-    inset 0 -1px 0 rgba(0,0,0,0.06) !important;
+  border-right-color: rgba(0,0,0,0.06) !important;
+  border-bottom-color: rgba(0,0,0,0.06) !important;
 }
 
 .cfgPanel {
@@ -1244,6 +1244,7 @@ body[data-layout-profile="wide"] .calHost {
 
 body[data-layout-profile="wide"] .calHost .flatpickr-calendar {
   height: 100% !important;
+  min-height: 100% !important;
   border-radius: 10px !important;
 }
 
@@ -1268,16 +1269,43 @@ body[data-layout-profile="wide"] .calHost .flatpickr-weekday {
   font-size: 11px !important;
 }
 
+body[data-layout-profile="wide"] .calHost .flatpickr-innerContainer,
+body[data-layout-profile="wide"] .calHost .flatpickr-rContainer {
+  flex: 1 1 auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+}
+
 body[data-layout-profile="wide"] .calHost .flatpickr-days,
 body[data-layout-profile="wide"] .calHost .dayContainer {
-  height: 118px !important;
-  min-height: 118px !important;
+  flex: 1 1 auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+body[data-layout-profile="wide"] .calHost .flatpickr-days {
+  flex: 1 1 auto !important;
+}
+
+body[data-layout-profile="wide"] .calHost .dayContainer {
+  display: grid !important;
+  grid-template-columns: repeat(7, minmax(0, 1fr)) !important;
+  grid-template-rows: repeat(6, minmax(0, 1fr)) !important;
+  align-content: stretch !important;
+  justify-content: stretch !important;
 }
 
 body[data-layout-profile="wide"] .calHost .flatpickr-day {
-  height: 19.6667px !important;
-  line-height: 19.6667px !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  height: auto !important;
+  min-height: 0 !important;
+  line-height: 1 !important;
   font-size: 12px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 body[data-layout-profile="wide"] .cfgPanel {
