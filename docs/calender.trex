@@ -7,17 +7,17 @@
   <dashboard-extension id="com.kisco.bigcalendar" extension-version="1.0.5">
     <default-locale>ko_KR</default-locale>
 
-    <name>Big Calendar Date Picker v2</name>
+    <name>Big Calendar Date Picker v3</name>
     <description>Large date range picker for Tableau parameters.</description>
 
     <author name="KiscoHoldings"
             email="admin@example.com"
-            website="https://takyunhui.github.io/tableau_big_calender_v2/?v=20260701_05" />
+            website="https://takyunhui.github.io/tableau_big_calender_v3/?v=20260701_05" />
 
     <min-api-version>1.7</min-api-version>
 
     <source-location>
-      <url>https://takyunhui.github.io/tableau_big_calender_v2/?v=20260701_05</url>
+      <url>https://takyunhui.github.io/tableau_big_calender_v3/?v=20260701_05</url>
     </source-location>
 
     <!-- icon 필수라고 뜨니까 무조건 넣음 (1x1 PNG base64) -->

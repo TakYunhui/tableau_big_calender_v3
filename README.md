@@ -1,9 +1,9 @@
-# tableau_big_calender_v2
+# tableau_big_calender_v3
 
 Tableau Dashboard Extension 기반 조회기간 선택 UI다.
 
 배포 URL:
-`https://takyunhui.github.io/tableau_big_calender_v2/`
+`https://takyunhui.github.io/tableau_big_calender_v3/`
 
 Manifest:
 [`docs/calender.trex`](/abs/path/C:/Users/lenovo/OneDrive/Desktop/tableau_big_calender_v2/docs/calender.trex)

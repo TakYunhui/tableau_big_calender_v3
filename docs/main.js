@@ -12,14 +12,29 @@ const DEFAULTS = {
   format: "Y. n. j",
 };
 
+const MOCK_STORAGE_KEY = "tableau_big_calender_v3_mock_state";
+const MOCK_DEFAULT_STATE = {
+  settings: {
+    kind: "range",
+    startParam: "mock_start_date",
+    endParam: "mock_end_date",
+    format: DEFAULTS.format,
+  },
+  parameters: {
+    mock_start_date: "2026-07-01",
+    mock_end_date: "2026-07-06",
+    mock_single_date: "2026-07-06",
+  },
+};
+
 const LAYOUT_PROFILE_BY_NAME = {
   wide: {
-    frameWidth: 420,
-    frameHeight: 150,
-    rangeBarHeight: 48,
-    quickPanelMinHeight: 102,
-    calendarHeight: 102,
-    configPanelHeight: 150,
+    frameWidth: 515,
+    frameHeight: 165,
+    rangeBarHeight: 165,
+    quickPanelMinHeight: 165,
+    calendarHeight: 165,
+    configPanelHeight: 165,
   },
   compact: {
     frameWidth: 300,
@@ -53,14 +68,37 @@ let hasUserSelectionInCurrentOpen = false;
 let toastTimer = null;
 let selectedQuickType = "";
 let lastEditedEdge = ""; // "start" | "end" | "range" | "quick"
+let activeTableauApi = null;
+let isMockRuntime = false;
+let persistentHintMessage = "";
+let transientHintMessage = "";
 
 function qs(id) {
   return document.getElementById(id);
 }
 
-function setHint(msg) {
+function getTableauApi() {
+  return activeTableauApi || window.tableau || null;
+}
+
+function getExtensionsApi() {
+  return getTableauApi()?.extensions || null;
+}
+
+function renderHint() {
   const el = qs("hint");
-  if (el) el.textContent = msg || "";
+  if (!el) return;
+  el.textContent = transientHintMessage || persistentHintMessage || "";
+}
+
+function setHint(msg) {
+  transientHintMessage = msg || "";
+  renderHint();
+}
+
+function setPersistentHint(msg) {
+  persistentHintMessage = msg || "";
+  renderHint();
 }
 
 function setCfgHint(msg) {
@@ -82,7 +120,7 @@ function showToast(msg) {
 }
 
 function isAuthoringMode() {
-  return tableau?.extensions?.environment?.mode === "authoring";
+  return getExtensionsApi()?.environment?.mode === "authoring";
 }
 
 function normalizeDisplayFormat(format) {
@@ -97,7 +135,16 @@ function normalizeDisplayFormat(format) {
 }
 
 function loadSettings() {
-  const s = tableau.extensions.settings;
+  const s = getExtensionsApi()?.settings;
+  if (!s) {
+    return {
+      kind: DEFAULTS.kind,
+      startParam: "",
+      endParam: "",
+      format: DEFAULTS.format,
+    };
+  }
+
   return {
     kind: s.get(SETTINGS_KEYS.kind) || DEFAULTS.kind,
     startParam: s.get(SETTINGS_KEYS.startParam) || "",
@@ -120,10 +167,264 @@ function getFallbackViewportSize() {
   return { width, height };
 }
 
+function shouldStartInMockMode() {
+  const params = new URLSearchParams(window.location.search);
+  const raw = String(params.get("mock") || "").trim().toLowerCase();
+
+  if (["1", "true", "yes", "on"].includes(raw)) return true;
+  if (["0", "false", "no", "off"].includes(raw)) return false;
+
+  return !getExtensionsApi()?.initializeAsync;
+}
+
+function normalizeMockDateValue(value, fallback) {
+  if (value instanceof Date && !Number.isNaN(value.getTime())) {
+    return toISODateOnly(value);
+  }
+
+  const text = String(value ?? "").trim();
+  if (!text) return fallback;
+
+  const parsedDate = parseDateStringValue(text);
+  if (parsedDate) return toISODateOnly(parsedDate);
+
+  const asNumber = Number(text);
+  if (!Number.isNaN(asNumber)) {
+    const parsedNumericDate = parseNumericDateValue(asNumber) || tableauSerialNumberToDate(asNumber);
+    if (parsedNumericDate) return toISODateOnly(parsedNumericDate);
+  }
+
+  return fallback;
+}
+
+function readMockStateFromStorage() {
+  try {
+    const raw = window.localStorage.getItem(MOCK_STORAGE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch (_) {
+    return null;
+  }
+}
+
+function writeMockStateToStorage(state) {
+  try {
+    window.localStorage.setItem(MOCK_STORAGE_KEY, JSON.stringify(state));
+  } catch (_) {}
+}
+
+function createDefaultMockState() {
+  return {
+    settings: { ...MOCK_DEFAULT_STATE.settings },
+    parameters: { ...MOCK_DEFAULT_STATE.parameters },
+  };
+}
+
+function normalizeMockState(rawState) {
+  const next = createDefaultMockState();
+  const raw = rawState && typeof rawState === "object" ? rawState : {};
+  const rawSettings = raw.settings && typeof raw.settings === "object" ? raw.settings : {};
+  const rawParameters = raw.parameters && typeof raw.parameters === "object" ? raw.parameters : {};
+
+  next.settings.kind = rawSettings.kind === "single" ? "single" : next.settings.kind;
+  next.settings.startParam = String(rawSettings.startParam || next.settings.startParam);
+  next.settings.endParam = String(rawSettings.endParam || next.settings.endParam);
+  next.settings.format = normalizeDisplayFormat(rawSettings.format || next.settings.format);
+
+  Object.keys(next.parameters).forEach((key) => {
+    next.parameters[key] = normalizeMockDateValue(rawParameters[key], next.parameters[key]);
+  });
+
+  const params = new URLSearchParams(window.location.search);
+  const mockKind = String(params.get("mockKind") || "").trim().toLowerCase();
+  const mockFormat = String(params.get("mockFormat") || "").trim();
+  const mockStart = params.get("mockStart");
+  const mockEnd = params.get("mockEnd");
+  const mockSingle = params.get("mockSingle");
+
+  if (mockKind === "single") {
+    next.settings.kind = "single";
+    next.settings.startParam = "mock_single_date";
+    next.settings.endParam = "";
+  } else if (mockKind === "range") {
+    next.settings.kind = "range";
+    next.settings.startParam = "mock_start_date";
+    next.settings.endParam = "mock_end_date";
+  }
+
+  if (mockFormat) next.settings.format = normalizeDisplayFormat(mockFormat);
+  if (mockStart !== null) next.parameters.mock_start_date = normalizeMockDateValue(mockStart, next.parameters.mock_start_date);
+  if (mockEnd !== null) next.parameters.mock_end_date = normalizeMockDateValue(mockEnd, next.parameters.mock_end_date);
+  if (mockSingle !== null) next.parameters.mock_single_date = normalizeMockDateValue(mockSingle, next.parameters.mock_single_date);
+
+  return next;
+}
+
+function createListenerRegistry() {
+  const listeners = new Map();
+
+  return {
+    add(type, handler) {
+      const key = String(type);
+      const bucket = listeners.get(key) || new Set();
+      bucket.add(handler);
+      listeners.set(key, bucket);
+
+      return () => {
+        bucket.delete(handler);
+        if (!bucket.size) listeners.delete(key);
+      };
+    },
+    emit(type, payload) {
+      const bucket = listeners.get(String(type));
+      if (!bucket) return;
+
+      bucket.forEach((handler) => {
+        try {
+          handler(payload);
+        } catch (e) {
+          console.error(e);
+        }
+      });
+    },
+  };
+}
+
+function createMockTableauApi() {
+  const eventTypes = {
+    ParameterChanged: "ParameterChanged",
+    DashboardLayoutChanged: "DashboardLayoutChanged",
+    SettingsChanged: "SettingsChanged",
+  };
+  const state = normalizeMockState(readMockStateFromStorage());
+  const settingsListeners = createListenerRegistry();
+  const dashboardListeners = createListenerRegistry();
+  const parameterListeners = new Map();
+
+  function persistState() {
+    writeMockStateToStorage(state);
+  }
+
+  function getParameterListenerRegistry(name) {
+    if (!parameterListeners.has(name)) {
+      parameterListeners.set(name, createListenerRegistry());
+    }
+    return parameterListeners.get(name);
+  }
+
+  function getMockParameterCurrentValue(name) {
+    const value = state.parameters[name];
+    const parsed = parseDateStringValue(value);
+
+    return {
+      value,
+      formattedValue: parsed ? toUIDateDisplay(parsed) : String(value || ""),
+    };
+  }
+
+  function createMockParameter(name) {
+    return {
+      name,
+      dataType: "date",
+      parameterType: "date",
+      type: "date",
+      get currentValue() {
+        return getMockParameterCurrentValue(name);
+      },
+      async changeValueAsync(value) {
+        state.parameters[name] = normalizeMockDateValue(value, state.parameters[name]);
+        persistState();
+        getParameterListenerRegistry(name).emit(eventTypes.ParameterChanged, {
+          getParameterAsync: async () => this,
+        });
+      },
+      addEventListener(type, handler) {
+        return getParameterListenerRegistry(name).add(type, handler);
+      },
+    };
+  }
+
+  const parameters = [
+    createMockParameter("mock_start_date"),
+    createMockParameter("mock_end_date"),
+    createMockParameter("mock_single_date"),
+  ];
+
+  const dashboard = {
+    name: "Mock Dashboard",
+    get size() {
+      return getFallbackViewportSize();
+    },
+    getDashboardObjectById(id) {
+      if (id !== "mock-zone") return null;
+      return {
+        id,
+        size: getFallbackViewportSize(),
+      };
+    },
+    async getParametersAsync() {
+      return parameters;
+    },
+    addEventListener(type, handler) {
+      return dashboardListeners.add(type, handler);
+    },
+  };
+
+  window.addEventListener("resize", () => {
+    dashboardListeners.emit(eventTypes.DashboardLayoutChanged, { dashboard });
+  });
+
+  const settings = {
+    get(key) {
+      return state.settings[key] ?? "";
+    },
+    set(key, value) {
+      state.settings[key] = String(value ?? "");
+    },
+    async saveAsync() {
+      persistState();
+      settingsListeners.emit(eventTypes.SettingsChanged, {});
+    },
+    addEventListener(type, handler) {
+      return settingsListeners.add(type, handler);
+    },
+  };
+
+  return {
+    TableauEventType: eventTypes,
+    extensions: {
+      environment: { mode: "authoring" },
+      dashboardObjectId: "mock-zone",
+      settings,
+      dashboardContent: { dashboard },
+      async initializeAsync() {
+        persistState();
+      },
+    },
+  };
+}
+
+function applyRuntimeModeState() {
+  const mode = isMockRuntime ? "mock" : "tableau";
+  document.documentElement.dataset.runtimeMode = mode;
+  if (document.body) document.body.dataset.runtimeMode = mode;
+  document.title = isMockRuntime ? "조회기간 [Mock]" : "조회기간";
+}
+
+function enableMockRuntime(reason) {
+  isMockRuntime = true;
+  activeTableauApi = createMockTableauApi();
+  setPersistentHint("Mock mode: 브라우저 미리보기, 적용값은 localStorage에만 저장됨");
+  applyRuntimeModeState();
+
+  if (reason) {
+    console.warn("Mock mode enabled:", reason);
+  }
+}
+
 async function getExtensionLayoutMetrics() {
   const dashboard = await getDashboard();
   const dashboardSize = dashboard?.size || null;
-  const dashboardObjectId = tableau?.extensions?.dashboardObjectId;
+  const dashboardObjectId = getExtensionsApi()?.dashboardObjectId;
   const dashboardObject = dashboardObjectId ? dashboard.getDashboardObjectById(dashboardObjectId) : null;
   const objectSize = dashboardObject?.size || null;
   const fallback = getFallbackViewportSize();
@@ -202,7 +503,7 @@ function requestLayoutSync() {
 }
 
 async function getDashboard() {
-  return tableau.extensions.dashboardContent.dashboard;
+  return getExtensionsApi()?.dashboardContent?.dashboard || null;
 }
 
 async function getParametersMap() {
@@ -1391,7 +1692,8 @@ async function saveConfigFromPanel() {
     if (!startParam) throw new Error("시작 파라미터를 선택하세요.");
     if (kind === "range" && !endParam) throw new Error("종료 파라미터를 선택하세요.");
 
-    const s = tableau.extensions.settings;
+    const s = getExtensionsApi()?.settings;
+    if (!s) throw new Error("settings API를 사용할 수 없습니다.");
     s.set(SETTINGS_KEYS.kind, kind);
     s.set(SETTINGS_KEYS.startParam, startParam);
     s.set(SETTINGS_KEYS.endParam, kind === "single" ? "" : endParam);
@@ -1429,6 +1731,7 @@ async function bindParameterChangedListeners(settings) {
 
   if (!settings.startParam) return;
 
+  const api = getTableauApi();
   const dash = await getDashboard();
   const params = await dash.getParametersAsync();
 
@@ -1439,7 +1742,7 @@ async function bindParameterChangedListeners(settings) {
     if (!targets.has(p.name)) return;
 
     const unregister = p.addEventListener(
-      tableau.TableauEventType.ParameterChanged,
+      api.TableauEventType.ParameterChanged,
       async () => {
         const s = loadSettings();
         await syncUIWithRetry(s, 6, 200);
@@ -1691,18 +1994,32 @@ async function render() {
 }
 
 async function init() {
-  await tableau.extensions.initializeAsync();
+  activeTableauApi = getTableauApi();
 
+  if (shouldStartInMockMode()) {
+    enableMockRuntime("forced by browser preview");
+  } else {
+    try {
+      await getExtensionsApi().initializeAsync();
+      isMockRuntime = false;
+      setPersistentHint("");
+      applyRuntimeModeState();
+    } catch (e) {
+      enableMockRuntime(e?.message || String(e));
+    }
+  }
+
+  const api = getTableauApi();
   const dashboard = await getDashboard();
   unregisterDashboardLayoutListener = dashboard.addEventListener(
-    tableau.TableauEventType.DashboardLayoutChanged,
+    api.TableauEventType.DashboardLayoutChanged,
     async () => { requestLayoutSync(); }
   );
 
   window.addEventListener("resize", requestLayoutSync);
 
-  tableau.extensions.settings.addEventListener(
-    tableau.TableauEventType.SettingsChanged,
+  getExtensionsApi().settings.addEventListener(
+    api.TableauEventType.SettingsChanged,
     async () => { await render(); }
   );
 

@@ -864,6 +864,9 @@ html, body {
   --frame-height: 150px;
   --panel-surface: #f4f6f8;
   --panel-border: #d0d5dd;
+  --wide-side-width: 150px;
+  --wide-panel-gap: 8px;
+  --wide-panel-pad: 6px;
 }
 
 html,
@@ -877,10 +880,36 @@ body {
   overflow: hidden;
 }
 
+html[data-runtime-mode="mock"],
+body[data-runtime-mode="mock"] {
+  width: var(--frame-width);
+  min-width: var(--frame-width);
+  max-width: var(--frame-width);
+  height: var(--frame-height);
+  min-height: var(--frame-height);
+  max-height: var(--frame-height);
+  overflow: hidden;
+}
+
 body:not(.cfgPage) {
   position: relative;
   background: transparent;
   pointer-events: none;
+}
+
+body[data-runtime-mode="mock"]:not(.cfgPage) {
+  box-sizing: border-box;
+}
+
+.appFrame {
+  position: relative;
+  width: var(--frame-width);
+  min-width: var(--frame-width);
+  max-width: var(--frame-width);
+  height: var(--frame-height);
+  min-height: var(--frame-height);
+  max-height: var(--frame-height);
+  overflow: hidden;
 }
 
 .rangeBar,
@@ -1087,73 +1116,130 @@ body.panel-open .hint {
 }
 
 body[data-layout-profile="wide"] .rangeBar {
-  height: var(--range-bar-height);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--wide-side-width);
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  align-content: start;
+  gap: 8px;
+  padding: 8px 6px 8px 6px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(247,249,252,0.92));
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.14);
 }
 
 body[data-layout-profile="wide"] .rangeLine {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-  flex: 1 1 auto;
-}
-
-body[data-layout-profile="wide"] .rangeBar.single-mode .rangeLine {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 8px;
+  align-content: start;
   flex: 0 0 auto;
 }
 
+body[data-layout-profile="wide"] .rangeBar.single-mode .rangeLine {
+  grid-template-columns: minmax(0, 1fr);
+}
+
 body[data-layout-profile="wide"] .singleDateHelp {
-  text-align: left;
+  display: none;
 }
 
 body[data-layout-profile="wide"] .dateSlot {
-  gap: 2px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 4px;
+  align-items: start;
 }
 
 body[data-layout-profile="wide"] .label {
   font-size: 11px;
+  color: rgba(17, 24, 39, 0.76);
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
 body[data-layout-profile="wide"] .dateValue {
-  font-size: 12px;
-  padding: 3px 5px;
+  width: 100%;
+  min-height: 34px;
+  padding: 6px 10px;
+  font-size: 15px;
+  text-align: center;
+  border-radius: 10px;
+  box-sizing: border-box;
 }
 
 body[data-layout-profile="wide"] .topActions {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-  margin-left: 4px;
-  flex-shrink: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  margin-left: 0;
+  align-content: start;
 }
 
 body[data-layout-profile="wide"] .miniBtn {
+  width: 100%;
   min-width: 0;
-  height: 26px;
-  padding: 0 7px;
-  font-size: 11px;
+  height: 31px;
+  padding: 0 6px;
+  font-size: 12px;
 }
 
 body[data-layout-profile="wide"] #closePanelBtn {
-  min-width: 42px;
+  min-width: 0;
   padding: 0 6px;
 }
 
 body[data-layout-profile="wide"] .quickHost,
 body[data-layout-profile="wide"] .calHost {
-  width: var(--frame-width);
-  height: var(--calendar-height);
+  width: auto;
+  height: auto;
   margin-top: 0;
 }
 
+body[data-layout-profile="wide"] .rangeBar.single-mode #dateSep,
+body[data-layout-profile="wide"] #dateSep {
+  display: none !important;
+}
+
+body[data-layout-profile="wide"] .rangeBar.single-mode #endSlot {
+  display: grid;
+}
+
+body[data-layout-profile="wide"] #settingsBtn {
+  width: 100%;
+  height: 31px;
+  font-size: 18px;
+}
+
+body[data-layout-profile="wide"] .quickHost.open,
+body[data-layout-profile="wide"] .calHost.open,
+body[data-layout-profile="wide"] .cfgPanel.open {
+  position: absolute;
+  top: var(--wide-panel-pad);
+  right: var(--wide-panel-pad);
+  bottom: var(--wide-panel-pad);
+  left: calc(var(--wide-side-width) + var(--wide-panel-gap));
+  width: auto;
+  height: auto;
+  z-index: 18;
+}
+
+body[data-layout-profile="wide"] .quickHost,
+body[data-layout-profile="wide"] .calHost,
+body[data-layout-profile="wide"] .cfgPanel {
+  border-radius: 14px;
+}
+
 body[data-layout-profile="wide"] .calHost {
-  padding: 1px 3px;
+  padding: 3px 4px;
 }
 
 body[data-layout-profile="wide"] .calHost .flatpickr-calendar {
   height: 100% !important;
+  border-radius: 10px !important;
 }
 
 body[data-layout-profile="wide"] .calHost .flatpickr-months,
@@ -1161,40 +1247,69 @@ body[data-layout-profile="wide"] .calHost .flatpickr-month,
 body[data-layout-profile="wide"] .calHost .flatpickr-current-month,
 body[data-layout-profile="wide"] .calHost .flatpickr-prev-month,
 body[data-layout-profile="wide"] .calHost .flatpickr-next-month {
-  height: 18px !important;
+  height: 24px !important;
 }
 
 body[data-layout-profile="wide"] .calHost .flatpickr-current-month,
 body[data-layout-profile="wide"] .calHost .flatpickr-current-month .flatpickr-monthDropdown-months,
 body[data-layout-profile="wide"] .calHost .flatpickr-current-month input.cur-year {
-  font-size: 12px !important;
+  font-size: 15px !important;
 }
 
 body[data-layout-profile="wide"] .calHost .flatpickr-weekdays,
 body[data-layout-profile="wide"] .calHost .flatpickr-weekday {
-  height: 12px !important;
-  line-height: 12px !important;
-  font-size: 9px !important;
+  height: 18px !important;
+  line-height: 18px !important;
+  font-size: 11px !important;
 }
 
 body[data-layout-profile="wide"] .calHost .flatpickr-days,
 body[data-layout-profile="wide"] .calHost .dayContainer {
-  height: 64px !important;
-  min-height: 64px !important;
+  height: 102px !important;
+  min-height: 102px !important;
 }
 
 body[data-layout-profile="wide"] .calHost .flatpickr-day {
-  height: 10px !important;
-  line-height: 10px !important;
-  font-size: 9px !important;
+  height: 17px !important;
+  line-height: 17px !important;
+  font-size: 12px !important;
 }
 
 body[data-layout-profile="wide"] .cfgPanel {
-  width: var(--frame-width);
-  height: var(--config-panel-height);
-  position: absolute;
-  inset: 0;
-  z-index: 18;
+  padding: 10px 12px;
+}
+
+body[data-layout-profile="wide"] .quickHost {
+  padding: 10px 12px;
+}
+
+body[data-layout-profile="wide"] .quickGroups {
+  grid-template-columns: minmax(0, 1fr);
+  gap: 8px;
+}
+
+body[data-layout-profile="wide"] .quickGroup {
+  align-items: flex-start;
+}
+
+body[data-layout-profile="wide"] .quickBar {
+  flex-wrap: wrap;
+  gap: 6px;
+  overflow-x: hidden;
+}
+
+body[data-layout-profile="wide"] .quickBtn {
+  height: 29px;
+  font-size: 11px;
+}
+
+body[data-layout-profile="wide"] .hint {
+  left: 8px;
+  right: auto;
+  width: calc(var(--wide-side-width) - 12px);
+  bottom: 8px;
+  padding: 0;
+  color: rgba(17, 24, 39, 0.68);
 }
 
 body[data-layout-profile="compact"] .rangeBar {
@@ -1379,4 +1494,21 @@ body[data-layout-profile="compact"] .calHost .flatpickr-day {
   height: 11px !important;
   line-height: 11px !important;
   font-size: 9px !important;
+}
+
+body[data-runtime-mode="mock"] .hint {
+  color: rgba(138, 84, 18, 0.92);
+}
+
+body[data-runtime-mode="mock"] {
+  margin: 0;
+  padding: 12px;
+  background: #eef2f6;
+}
+
+body[data-runtime-mode="mock"] .appFrame {
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(138, 152, 173, 0.45);
+  border-radius: 14px;
+  box-shadow: 0 10px 28px rgba(27, 39, 61, 0.12);
 }
