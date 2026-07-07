@@ -1115,7 +1115,7 @@ body:not(.cfgPage) .btn-quick-cancel:hover:not(:disabled) {
   border-radius: 12px;
 }
 
-body.panel-open .hint {
+body.panel-open:not([data-layout-profile="wide"]) .hint {
   display: none;
 }
 
@@ -1126,9 +1126,9 @@ body[data-layout-profile="wide"] .rangeBar {
   width: var(--wide-side-width);
   height: 100px;
   display: grid;
-  grid-template-rows: auto auto auto;
+  grid-template-rows: auto auto auto auto;
   align-content: start;
-  gap: 5px;
+  gap: 3px;
   padding: 4px 6px 0 6px;
   background: transparent;
   border-radius: 0;
@@ -1150,12 +1150,12 @@ body[data-layout-profile="wide"] .rangeBar.single-mode .rangeLine {
 body[data-layout-profile="wide"] .singleDateHelp {
   display: block;
   grid-row: 1;
-  min-height: 13px;
+  min-height: 11px;
   padding: 0;
   color: #cfe0ff;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.1;
 }
 
 body[data-layout-profile="wide"] .dateSlot {
@@ -1174,8 +1174,8 @@ body[data-layout-profile="wide"] .label {
 
 body[data-layout-profile="wide"] .dateValue {
   width: 100%;
-  min-height: 30px;
-  padding: 4px 10px;
+  min-height: 28px;
+  padding: 3px 10px;
   font-size: 15px;
   text-align: center;
   border-radius: 10px;
@@ -1194,7 +1194,7 @@ body[data-layout-profile="wide"] .topActions {
 body[data-layout-profile="wide"] .miniBtn {
   width: auto;
   min-width: 0;
-  height: 30px;
+  height: 28px;
   padding: 0 7px;
   font-size: 11px;
 }
@@ -1221,13 +1221,12 @@ body[data-layout-profile="wide"] .rangeBar.single-mode #endSlot {
 }
 
 body[data-layout-profile="wide"] #settingsBtn {
-  width: 30px;
-  min-width: 30px;
-  height: 30px;
+  width: 28px;
+  min-width: 28px;
+  height: 28px;
   font-size: 17px;
 }
 
-body[data-layout-profile="wide"] .quickHost.open,
 body[data-layout-profile="wide"] .calHost.open,
 body[data-layout-profile="wide"] .cfgPanel.open {
   position: absolute;
@@ -1237,6 +1236,18 @@ body[data-layout-profile="wide"] .cfgPanel.open {
   left: calc(var(--wide-side-width) + var(--wide-panel-gap));
   width: auto;
   height: auto;
+  z-index: 18;
+}
+
+body[data-layout-profile="wide"] .quickHost.open {
+  position: absolute;
+  top: var(--wide-panel-pad);
+  left: calc(var(--wide-side-width) + var(--wide-panel-gap));
+  right: auto;
+  bottom: auto;
+  width: 304px;
+  max-width: calc(100% - var(--wide-side-width) - var(--wide-panel-gap) - (var(--wide-panel-pad) * 2));
+  max-height: calc(100% - (var(--wide-panel-pad) * 2));
   z-index: 18;
 }
 
@@ -1321,36 +1332,85 @@ body[data-layout-profile="wide"] .cfgPanel {
 }
 
 body[data-layout-profile="wide"] .quickHost {
-  padding: 10px 12px;
+  padding: 10px 12px 11px;
 }
 
 body[data-layout-profile="wide"] .quickGroups {
-  grid-template-columns: minmax(0, 1fr);
-  gap: 8px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 12px;
+}
+
+body[data-layout-profile="wide"] .quickGroup--compare,
+body[data-layout-profile="wide"] .quickGroup--quarter {
+  grid-column: auto;
+}
+
+body[data-layout-profile="wide"] .quickGroup--month {
+  justify-self: stretch;
 }
 
 body[data-layout-profile="wide"] .quickGroup {
-  align-items: flex-start;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-content: start;
+  gap: 6px;
+  min-width: 0;
 }
 
 body[data-layout-profile="wide"] .quickBar {
   flex-wrap: wrap;
   gap: 6px;
-  overflow-x: hidden;
+  overflow: visible;
+  padding-bottom: 0;
 }
 
 body[data-layout-profile="wide"] .quickBtn {
-  height: 29px;
-  font-size: 11px;
+  height: 28px;
+  padding: 0 10px;
+  font-size: 10px;
 }
 
 body[data-layout-profile="wide"] .hint {
-  left: 8px;
+  position: static;
+  display: block !important;
+  grid-row: 4;
+  left: auto;
   right: auto;
-  width: calc(var(--wide-side-width) - 12px);
-  bottom: 8px;
+  width: auto;
+  max-width: 100%;
+  bottom: auto;
+  margin: 0;
   padding: 0;
-  color: rgba(17, 24, 39, 0.68);
+  min-height: 10px;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 10px;
+  line-height: 1.1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+body[data-layout-profile="wide"] .toast {
+  position: absolute;
+  left: 6px;
+  right: auto;
+  bottom: auto;
+  top: 87px;
+  width: calc(var(--wide-side-width) - 12px);
+  padding: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transform: none;
+}
+
+body[data-layout-profile="wide"] .toast.show {
+  transform: none;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="range"] .rangeLine {
@@ -1362,6 +1422,10 @@ body[data-layout-profile="wide"][data-selection-kind="single"] .rangeLine {
   grid-template-columns: 1fr;
   max-width: 152px;
   grid-row: 3;
+}
+
+body[data-layout-profile="wide"][data-selection-kind="single"] .quickHost.open {
+  width: 286px;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="range"] #startSlot,
@@ -1426,14 +1490,6 @@ body[data-layout-profile="wide"][data-panel-kind="closed"] .quickHost,
 body[data-layout-profile="wide"][data-panel-kind="closed"] .calHost,
 body[data-layout-profile="wide"][data-panel-kind="closed"] .cfgPanel {
   display: none !important;
-}
-
-body[data-layout-profile="wide"][data-panel-kind="closed"] .hint {
-  left: 8px;
-  right: auto;
-  width: calc(var(--wide-side-width) - 16px);
-  bottom: 8px;
-  padding: 0;
 }
 
 body[data-layout-profile="compact"] .rangeBar {
