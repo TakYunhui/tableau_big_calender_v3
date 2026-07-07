@@ -1910,7 +1910,7 @@ function updateQuickPanelVisibility() {
       yesterdayBtn.style.display = "";
     }
     if (monthBtn) {
-      monthBtn.textContent = "전월 말";
+      monthBtn.textContent = "전월 말일";
       monthBtn.style.display = "";
     }
     if (weekBtn) weekBtn.style.display = "none";
