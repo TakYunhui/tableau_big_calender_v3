@@ -1126,9 +1126,9 @@ body[data-layout-profile="wide"] .rangeBar {
   width: var(--wide-side-width);
   height: 100px;
   display: grid;
-  grid-template-rows: auto auto;
+  grid-template-rows: auto auto auto;
   align-content: start;
-  gap: 8px;
+  gap: 5px;
   padding: 4px 6px 0 6px;
   background: transparent;
   border-radius: 0;
@@ -1148,7 +1148,14 @@ body[data-layout-profile="wide"] .rangeBar.single-mode .rangeLine {
 }
 
 body[data-layout-profile="wide"] .singleDateHelp {
-  display: none;
+  display: block;
+  grid-row: 1;
+  min-height: 13px;
+  padding: 0;
+  color: #cfe0ff;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
 }
 
 body[data-layout-profile="wide"] .dateSlot {
@@ -1181,6 +1188,7 @@ body[data-layout-profile="wide"] .topActions {
   flex-wrap: nowrap;
   gap: 5px;
   margin-left: 0;
+  grid-row: 2;
 }
 
 body[data-layout-profile="wide"] .miniBtn {
@@ -1347,34 +1355,12 @@ body[data-layout-profile="wide"] .hint {
 
 body[data-layout-profile="wide"][data-selection-kind="range"] .rangeLine {
   grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-row: 3;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="single"] .rangeLine {
   grid-template-columns: 1fr;
   max-width: 152px;
-}
-
-body[data-layout-profile="wide"][data-selection-kind="single"] .rangeBar {
-  grid-template-rows: auto auto auto;
-  gap: 5px;
-}
-
-body[data-layout-profile="wide"][data-selection-kind="single"] .singleDateHelp {
-  display: block;
-  grid-row: 1;
-  min-height: 13px;
-  padding: 0;
-  color: #cfe0ff;
-  font-size: 11px;
-  font-weight: 700;
-  line-height: 1.2;
-}
-
-body[data-layout-profile="wide"][data-selection-kind="single"] .topActions {
-  grid-row: 2;
-}
-
-body[data-layout-profile="wide"][data-selection-kind="single"] .rangeLine {
   grid-row: 3;
 }
 
