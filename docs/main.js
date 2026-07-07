@@ -788,6 +788,12 @@ function updateDateFieldLayout() {
     rangeBar.classList.toggle("single-mode", settings.kind === "single");
   }
 
+  const body = document.body;
+  if (body) body.dataset.selectionKind = settings.kind;
+
+  const frame = qs("appFrame");
+  if (frame) frame.dataset.selectionKind = settings.kind;
+
   if (settings.kind === "single") {
     if (startSlot) startSlot.style.display = "none";
     if (sep) sep.style.display = "none";
@@ -817,6 +823,9 @@ function syncOpenStateClasses() {
 
   body.classList.toggle("panel-open", panelKind !== "closed");
   body.dataset.panelKind = panelKind;
+
+  const frame = qs("appFrame");
+  if (frame) frame.dataset.panelKind = panelKind;
 }
 
 async function syncUIFromCurrentParameterValues(settings) {
