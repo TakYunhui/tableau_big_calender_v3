@@ -126,7 +126,6 @@ html, body {
   box-shadow:
     0 2px 6px rgba(49, 112, 245, 0.10),
     0 0 0 1px rgba(49, 112, 245, 0.08) inset;
-  transform: translateY(-1px);
 }
 
 .dateValue.pending {
@@ -171,7 +170,7 @@ html, body {
 }
 
 .miniBtn:hover:not(:disabled) {
-  transform: translateY(-1px);
+  transform: none;
 }
 
 .btn-range-active,
@@ -196,6 +195,11 @@ html, body {
   display: none;
   align-items: center;
   justify-content: center;
+}
+
+#closePanelBtn.layout-hidden {
+  visibility: hidden;
+  pointer-events: none;
 }
 
 .btn-range-active {
@@ -470,7 +474,7 @@ html, body {
 .quickBtn:hover:not(:disabled) {
   background: linear-gradient(180deg, rgba(255,255,255,1), var(--quick-accent-bg-hover));
   border-color: var(--quick-accent-border-hover);
-  transform: translateY(-1px);
+  transform: none;
 }
 
 .quickBtn.selected {

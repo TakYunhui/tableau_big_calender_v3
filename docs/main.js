@@ -1278,7 +1278,8 @@ function updateClosePanelButton() {
 
   const visible = isCalendarOpen || isQuickOpen;
   btn.textContent = "닫기";
-  btn.style.display = visible ? "inline-flex" : "none";
+  btn.style.display = "inline-flex";
+  btn.classList.toggle("layout-hidden", !visible);
   btn.disabled = isApplying || !visible;
 }
 
