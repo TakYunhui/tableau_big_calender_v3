@@ -1465,6 +1465,7 @@ body[data-layout-profile="wide"][data-selection-kind="range"] .quickBtn {
 body[data-layout-profile="wide"][data-selection-kind="single"] .rangeLine {
   grid-template-columns: 1fr;
   max-width: 152px;
+  width: 152px;
   grid-row: 3;
   align-self: stretch;
   justify-self: end;
@@ -1501,6 +1502,10 @@ body[data-layout-profile="wide"][data-selection-kind="single"] .singleDateHelp {
   width: max-content;
   max-width: calc(var(--wide-side-width) - 12px);
   text-align: right;
+}
+
+body[data-layout-profile="wide"][data-selection-kind="single"] .rangeBar {
+  justify-items: end;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="single"] .topActions {
