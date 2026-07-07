@@ -1931,16 +1931,19 @@ function updateQuickPanelVisibility() {
       yesterdayBtn.style.display = "";
     }
     if (monthBtn) {
-      monthBtn.textContent = "이번달";
+      monthBtn.textContent = "당월 누계";
       monthBtn.style.display = "";
     }
-    if (weekBtn) weekBtn.style.display = "";
+    if (weekBtn) {
+      weekBtn.textContent = "금주 누계";
+      weekBtn.style.display = "";
+    }
     if (ytdBtn) {
       ytdBtn.textContent = "금년 누계";
       ytdBtn.style.display = "";
     }
     if (lastMonthBtn) {
-      lastMonthBtn.textContent = "지난달";
+      lastMonthBtn.textContent = "전월 전체";
       lastMonthBtn.style.display = "";
     }
     if (lastYearSameMonthBtn) {
