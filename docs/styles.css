@@ -1322,7 +1322,8 @@ body[data-layout-profile="wide"][data-selection-kind="range"] .rangeLine {
 }
 
 body[data-layout-profile="wide"][data-selection-kind="single"] .rangeLine {
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: 1fr;
+  max-width: 182px;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="range"] #startSlot,
@@ -1332,7 +1333,12 @@ body[data-layout-profile="wide"][data-selection-kind="single"] #endSlot {
 }
 
 body[data-layout-profile="wide"][data-selection-kind="single"] .topActions {
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  justify-content: start;
   gap: 5px;
+  width: max-content;
 }
 
 body[data-layout-profile="wide"] #rangeModeBtn {
@@ -1349,6 +1355,20 @@ body[data-layout-profile="wide"] #closePanelBtn {
 }
 
 body[data-layout-profile="wide"][data-selection-kind="single"] #rangeModeBtn {
+  display: none !important;
+}
+
+body[data-layout-profile="wide"][data-selection-kind="single"] #endSlot {
+  grid-template-columns: 28px 126px;
+}
+
+body[data-layout-profile="wide"][data-selection-kind="single"] #endText {
+  width: 126px;
+  min-width: 126px;
+  max-width: 126px;
+}
+
+body[data-layout-profile="wide"][data-selection-kind="single"] #closePanelBtn.layout-hidden {
   display: none !important;
 }
 
