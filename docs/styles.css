@@ -1456,7 +1456,29 @@ body[data-layout-profile="wide"][data-selection-kind="single"] .rangeLine {
 }
 
 body[data-layout-profile="wide"][data-selection-kind="single"] .quickHost.open {
-  width: 286px;
+  width: 248px;
+}
+
+body[data-layout-profile="wide"][data-selection-kind="single"] .quickHost {
+  padding: 9px 10px 10px;
+}
+
+body[data-layout-profile="wide"][data-selection-kind="single"] .quickGroups {
+  gap: 8px 8px;
+}
+
+body[data-layout-profile="wide"][data-selection-kind="single"] .quickGroup {
+  gap: 4px;
+}
+
+body[data-layout-profile="wide"][data-selection-kind="single"] .quickBar {
+  gap: 4px;
+}
+
+body[data-layout-profile="wide"][data-selection-kind="single"] .quickBtn {
+  height: 26px;
+  padding: 0 8px;
+  font-size: 10px;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="range"] #startSlot,
