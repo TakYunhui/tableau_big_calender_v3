@@ -1418,6 +1418,37 @@ body[data-layout-profile="wide"][data-selection-kind="range"] .rangeLine {
   grid-row: 3;
 }
 
+body[data-layout-profile="wide"][data-selection-kind="range"] .quickHost {
+  padding: 8px 10px 9px;
+}
+
+body[data-layout-profile="wide"][data-selection-kind="range"] .quickGroups {
+  gap: 8px 10px;
+}
+
+body[data-layout-profile="wide"][data-selection-kind="range"] .quickGroup {
+  gap: 4px;
+}
+
+body[data-layout-profile="wide"][data-selection-kind="range"] .quickGroupTitle {
+  gap: 6px;
+  font-size: 10px;
+}
+
+body[data-layout-profile="wide"][data-selection-kind="range"] .quickGroupTitle::before {
+  width: 3px;
+  height: 13px;
+}
+
+body[data-layout-profile="wide"][data-selection-kind="range"] .quickBar {
+  gap: 4px;
+}
+
+body[data-layout-profile="wide"][data-selection-kind="range"] .quickBtn {
+  height: 26px;
+  padding: 0 8px;
+}
+
 body[data-layout-profile="wide"][data-selection-kind="single"] .rangeLine {
   grid-template-columns: 1fr;
   max-width: 152px;
