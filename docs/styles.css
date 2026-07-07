@@ -864,7 +864,7 @@ html, body {
   --frame-height: 150px;
   --panel-surface: #f4f6f8;
   --panel-border: #d0d5dd;
-  --wide-side-width: 212px;
+  --wide-side-width: 272px;
   --wide-panel-gap: 8px;
   --wide-panel-pad: 6px;
 }
@@ -1120,21 +1120,21 @@ body[data-layout-profile="wide"] .rangeBar {
   top: 0;
   left: 0;
   width: var(--wide-side-width);
-  height: 100%;
+  height: 100px;
   display: grid;
-  grid-template-rows: auto auto 1fr;
+  grid-template-rows: auto auto;
   align-content: start;
-  gap: 10px;
-  padding: 8px 8px 8px 8px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.96), rgba(247,249,252,0.92));
-  border-radius: 12px;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.14);
+  gap: 8px;
+  padding: 4px 6px 0 6px;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 body[data-layout-profile="wide"] .rangeLine {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 10px;
+  gap: 6px;
   align-content: start;
   flex: 0 0 auto;
 }
@@ -1149,47 +1149,47 @@ body[data-layout-profile="wide"] .singleDateHelp {
 
 body[data-layout-profile="wide"] .dateSlot {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 5px;
-  align-items: start;
+  grid-template-columns: 28px minmax(0, 1fr);
+  gap: 4px;
+  align-items: center;
 }
 
 body[data-layout-profile="wide"] .label {
   font-size: 11px;
-  color: rgba(17, 24, 39, 0.76);
+  color: rgba(17, 24, 39, 0.86);
   font-weight: 800;
   letter-spacing: -0.02em;
 }
 
 body[data-layout-profile="wide"] .dateValue {
   width: 100%;
-  min-height: 36px;
-  padding: 7px 10px;
-  font-size: 16px;
+  min-height: 30px;
+  padding: 4px 10px;
+  font-size: 15px;
   text-align: center;
   border-radius: 10px;
   box-sizing: border-box;
 }
 
 body[data-layout-profile="wide"] .topActions {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 7px;
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  gap: 5px;
   margin-left: 0;
-  align-content: start;
 }
 
 body[data-layout-profile="wide"] .miniBtn {
-  width: 100%;
+  width: auto;
   min-width: 0;
-  height: 33px;
-  padding: 0 8px;
-  font-size: 12px;
+  height: 30px;
+  padding: 0 7px;
+  font-size: 11px;
 }
 
 body[data-layout-profile="wide"] #closePanelBtn {
   min-width: 0;
-  padding: 0 6px;
+  padding: 0 7px;
 }
 
 body[data-layout-profile="wide"] .quickHost,
@@ -1209,9 +1209,10 @@ body[data-layout-profile="wide"] .rangeBar.single-mode #endSlot {
 }
 
 body[data-layout-profile="wide"] #settingsBtn {
-  width: 100%;
-  height: 33px;
-  font-size: 18px;
+  width: 30px;
+  min-width: 30px;
+  height: 30px;
+  font-size: 17px;
 }
 
 body[data-layout-profile="wide"] .quickHost.open,
@@ -1258,20 +1259,20 @@ body[data-layout-profile="wide"] .calHost .flatpickr-current-month input.cur-yea
 
 body[data-layout-profile="wide"] .calHost .flatpickr-weekdays,
 body[data-layout-profile="wide"] .calHost .flatpickr-weekday {
-  height: 16px !important;
-  line-height: 16px !important;
+  height: 14px !important;
+  line-height: 14px !important;
   font-size: 11px !important;
 }
 
 body[data-layout-profile="wide"] .calHost .flatpickr-days,
 body[data-layout-profile="wide"] .calHost .dayContainer {
-  height: 112px !important;
-  min-height: 112px !important;
+  height: 118px !important;
+  min-height: 118px !important;
 }
 
 body[data-layout-profile="wide"] .calHost .flatpickr-day {
-  height: 18.6667px !important;
-  line-height: 18.6667px !important;
+  height: 19.6667px !important;
+  line-height: 19.6667px !important;
   font-size: 12px !important;
 }
 
@@ -1313,7 +1314,7 @@ body[data-layout-profile="wide"] .hint {
 }
 
 body[data-layout-profile="wide"][data-selection-kind="range"] .rangeLine {
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 body[data-layout-profile="wide"][data-selection-kind="single"] .rangeLine {
@@ -1327,13 +1328,24 @@ body[data-layout-profile="wide"][data-selection-kind="single"] #endSlot {
 }
 
 body[data-layout-profile="wide"][data-selection-kind="single"] .topActions {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px;
 }
 
-body[data-layout-profile="wide"][data-panel-kind="closed"] .rangeBar {
-  background: transparent;
-  border-radius: 0;
-  box-shadow: none;
+body[data-layout-profile="wide"] #rangeModeBtn {
+  width: 48px;
+}
+
+body[data-layout-profile="wide"] #quickModeBtn {
+  width: 72px;
+}
+
+body[data-layout-profile="wide"] #applyBtn,
+body[data-layout-profile="wide"] #closePanelBtn {
+  width: 46px;
+}
+
+body[data-layout-profile="wide"][data-selection-kind="single"] #rangeModeBtn {
+  display: none !important;
 }
 
 body[data-layout-profile="wide"][data-panel-kind="closed"] .singleDateHelp {
