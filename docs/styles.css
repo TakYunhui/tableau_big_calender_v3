@@ -1375,7 +1375,8 @@ body[data-layout-profile="wide"] .hint {
   display: block !important;
   left: 6px;
   right: auto;
-  bottom: 6px;
+  top: 80px;
+  bottom: auto;
   width: auto;
   max-width: calc(var(--wide-side-width) - 12px);
   margin: 0;
@@ -1397,9 +1398,8 @@ body[data-layout-profile="wide"] .toast {
   position: absolute;
   left: 6px;
   right: auto;
+  top: 80px;
   bottom: auto;
-  bottom: 6px;
-  top: auto;
   width: auto;
   max-width: calc(var(--wide-side-width) - 12px);
   padding: 3px 8px;
