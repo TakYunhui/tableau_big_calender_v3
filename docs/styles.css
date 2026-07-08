@@ -872,6 +872,8 @@ html, body {
   --wide-single-side-width: 220px;
   --wide-panel-gap: 8px;
   --wide-panel-pad: 6px;
+  --wide-toast-left: 6px;
+  --wide-toast-max-width: calc(var(--wide-side-width) - 12px);
 }
 
 html,
@@ -1447,12 +1449,12 @@ body[data-layout-profile="wide"] .hint:empty {
 
 body[data-layout-profile="wide"] .toast {
   position: absolute;
-  left: 6px;
+  left: var(--wide-toast-left);
   right: auto;
   top: 104px;
   bottom: auto;
   width: auto;
-  max-width: calc(var(--wide-side-width) - 12px);
+  max-width: var(--wide-toast-max-width);
   padding: 3px 8px;
   background: rgba(11, 19, 38, 0.84);
   border: 1px solid rgba(255, 255, 255, 0.14);
@@ -1554,6 +1556,11 @@ body[data-layout-profile="wide"][data-selection-kind="single"] .rangeBar {
   left: calc(var(--wide-side-width) - 156px);
   width: 156px;
   justify-items: stretch;
+}
+
+body[data-layout-profile="wide"][data-selection-kind="single"] {
+  --wide-toast-left: calc(var(--wide-side-width) - 156px);
+  --wide-toast-max-width: 156px;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="single"] .topActions {
