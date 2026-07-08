@@ -868,9 +868,9 @@ html, body {
   --frame-height: 215px;
   --panel-surface: #f4f6f8;
   --panel-border: #d0d5dd;
-  --wide-side-width: 228px;
-  --wide-date-value-width: 142px;
-  --wide-single-cluster-width: 176px;
+  --wide-side-width: 250px;
+  --wide-date-value-width: 92px;
+  --wide-single-cluster-width: 170px;
   --wide-panel-gap: 8px;
   --wide-panel-pad: 6px;
   --wide-side-top: 2px;
@@ -1185,9 +1185,9 @@ body[data-layout-profile="wide"] .label {
 
 body[data-layout-profile="wide"] .dateValue {
   width: var(--wide-date-value-width);
-  min-height: 28px;
-  padding: 3px 10px;
-  font-size: 14px;
+  min-height: 34px;
+  padding: 4px 10px;
+  font-size: 15px;
   text-align: center;
   border-radius: 10px;
   box-sizing: border-box;
@@ -1210,7 +1210,7 @@ body[data-layout-profile="wide"] .topActions {
 body[data-layout-profile="wide"] .miniBtn {
   width: auto;
   min-width: 0;
-  height: 26px;
+  height: 28px;
   padding: 0 7px;
   font-size: 10px;
 }
@@ -1273,7 +1273,7 @@ body[data-layout-profile="wide"] .quickHost.open {
   bottom: auto;
   width: auto;
   height: auto;
-  min-height: 0;
+  min-height: 100px;
   max-height: calc(var(--frame-height) - (var(--wide-panel-pad) * 2));
   overflow-y: auto;
   z-index: 18;
@@ -1490,9 +1490,12 @@ body[data-layout-profile="wide"] .toast.show {
 }
 
 body[data-layout-profile="wide"][data-selection-kind="range"] .rangeLine {
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: repeat(2, max-content);
   grid-row: 3;
   align-self: stretch;
+  justify-self: start;
+  gap: 8px;
+  width: max-content;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="range"] .quickHost {
