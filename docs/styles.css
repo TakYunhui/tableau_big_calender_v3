@@ -870,6 +870,7 @@ html, body {
   --panel-border: #d0d5dd;
   --wide-side-width: 228px;
   --wide-date-value-width: 142px;
+  --wide-single-cluster-width: 176px;
   --wide-panel-gap: 8px;
   --wide-panel-pad: 6px;
   --wide-side-top: 2px;
@@ -1527,11 +1528,11 @@ body[data-layout-profile="wide"][data-selection-kind="range"] .quickBtn {
 
 body[data-layout-profile="wide"][data-selection-kind="single"] .rangeLine {
   grid-template-columns: 1fr;
-  max-width: none;
-  width: 100%;
+  max-width: var(--wide-single-cluster-width);
+  width: var(--wide-single-cluster-width);
   grid-row: 3;
   align-self: stretch;
-  justify-self: start;
+  justify-self: end;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="single"] .quickHost {
@@ -1557,8 +1558,8 @@ body[data-layout-profile="wide"][data-selection-kind="single"] .quickBtn {
 }
 
 body[data-layout-profile="wide"][data-selection-kind="single"] .singleDateHelp {
-  justify-self: start;
-  width: max-content;
+  justify-self: end;
+  width: var(--wide-single-cluster-width);
   max-width: none;
   text-align: left;
 }
@@ -1571,7 +1572,7 @@ body[data-layout-profile="wide"][data-selection-kind="single"] .rangeBar {
 }
 
 body[data-layout-profile="wide"][data-selection-kind="single"] .topActions {
-  justify-self: start;
+  justify-self: end;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="range"] #startSlot,
@@ -1586,7 +1587,7 @@ body[data-layout-profile="wide"][data-selection-kind="single"] .topActions {
   grid-auto-columns: max-content;
   justify-content: start;
   gap: 5px;
-  width: max-content;
+  width: var(--wide-single-cluster-width);
 }
 
 body[data-layout-profile="wide"][data-selection-kind="single"] #quickModeBtn {
