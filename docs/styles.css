@@ -868,9 +868,9 @@ html, body {
   --frame-height: 215px;
   --panel-surface: #f4f6f8;
   --panel-border: #d0d5dd;
-  --wide-side-width: 250px;
-  --wide-date-value-width: 92px;
-  --wide-single-cluster-width: 170px;
+  --wide-side-width: 272px;
+  --wide-date-value-width: 96px;
+  --wide-single-cluster-width: 184px;
   --wide-panel-gap: 8px;
   --wide-panel-pad: 6px;
   --wide-side-top: 2px;
@@ -1170,7 +1170,7 @@ body[data-layout-profile="wide"] .singleDateHelp {
 body[data-layout-profile="wide"] .dateSlot {
   display: grid;
   grid-template-columns: 28px var(--wide-date-value-width);
-  gap: 3px;
+  gap: 4px;
   align-items: center;
   align-self: stretch;
   justify-content: start;
@@ -1200,7 +1200,7 @@ body[data-layout-profile="wide"] .topActions {
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
-  gap: 4px;
+  gap: 5px;
   margin-left: 0;
   grid-row: 2;
   width: 100%;
@@ -1494,7 +1494,7 @@ body[data-layout-profile="wide"][data-selection-kind="range"] .rangeLine {
   grid-row: 3;
   align-self: stretch;
   justify-self: start;
-  gap: 8px;
+  gap: 10px;
   width: max-content;
 }
 
@@ -1572,7 +1572,7 @@ body[data-layout-profile="wide"][data-selection-kind="single"] .rangeBar {
   left: auto;
   width: var(--wide-side-width);
   justify-items: stretch;
-  padding-left: 18px;
+  padding-left: 24px;
   box-sizing: border-box;
 }
 
