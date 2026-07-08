@@ -3,10 +3,13 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <title>조회기간</title>
 
   <link rel="stylesheet" href="./lib/flatpickr.min.css" />
-  <link rel="stylesheet" href="./styles.css?v=20260707_02" />
+  <link id="appStyles" rel="stylesheet" href="./styles.css?v=20260708_01" />
 </head>
 
 <body>
@@ -129,6 +132,29 @@
 
   <script src="./lib/flatpickr.min.js"></script>
   <script src="https://extensions.tableauusercontent.com/resources/tableau.extensions.1.latest.min.js"></script>
-  <script src="./main.js?v=20260707_02"></script>
+  <script>
+    (function () {
+      const fallbackBuild = "20260708_01";
+      const stylesEl = document.getElementById("appStyles");
+
+      function loadMain(build) {
+        const main = document.createElement("script");
+        main.src = "./main.js?v=" + encodeURIComponent(build || fallbackBuild);
+        document.body.appendChild(main);
+      }
+
+      fetch("./version.json?ts=" + Date.now(), { cache: "no-store" })
+        .then((res) => (res.ok ? res.json() : null))
+        .then((data) => {
+          const build = String(data?.build || fallbackBuild);
+          if (stylesEl) stylesEl.href = "./styles.css?v=" + encodeURIComponent(build);
+          loadMain(build);
+        })
+        .catch(() => {
+          if (stylesEl) stylesEl.href = "./styles.css?v=" + fallbackBuild;
+          loadMain(fallbackBuild);
+        });
+    })();
+  </script>
 </body>
 </html>
