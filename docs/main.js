@@ -1014,6 +1014,16 @@ function applyMonthHeaderPatch(instance) {
     monthsWrap.appendChild(prevBtn);
     monthsWrap.appendChild(currentMonth);
     monthsWrap.appendChild(nextBtn);
+    const closeBtn = document.createElement("button");
+    closeBtn.type = "button";
+    closeBtn.className = "panelCloseBtn calendarHeaderCloseBtn";
+    closeBtn.setAttribute("aria-label", "닫기");
+    closeBtn.textContent = "×";
+    closeBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      closeActiveSelectionPanel();
+    });
+    monthsWrap.appendChild(closeBtn);
   }
 }
 
@@ -1782,7 +1792,6 @@ function bindHandlers() {
   const applyBtn = qs("applyBtn");
   const closePanelBtn = qs("closePanelBtn");
   const quickPanelCloseBtn = qs("quickPanelCloseBtn");
-  const calendarPanelCloseBtn = qs("calendarPanelCloseBtn");
   const settingsBtn = qs("settingsBtn");
   const cfgCloseBtn = qs("cfgCloseBtn");
   const cfgSaveBtn = qs("cfgSaveBtn");
@@ -1871,13 +1880,6 @@ function bindHandlers() {
 
   if (quickPanelCloseBtn) {
     quickPanelCloseBtn.onclick = (e) => {
-      e.stopPropagation();
-      closeActiveSelectionPanel();
-    };
-  }
-
-  if (calendarPanelCloseBtn) {
-    calendarPanelCloseBtn.onclick = (e) => {
       e.stopPropagation();
       closeActiveSelectionPanel();
     };

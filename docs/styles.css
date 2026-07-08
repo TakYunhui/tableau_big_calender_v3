@@ -1287,6 +1287,14 @@ body[data-layout-profile="wide"] .panelCloseBtn {
   z-index: 3;
 }
 
+body[data-layout-profile="wide"] .calendarHeaderCloseBtn {
+  top: 1px;
+  right: 4px;
+  width: 20px;
+  height: 20px;
+  font-size: 14px;
+}
+
 body[data-layout-profile="wide"] .calHost.open .panelCloseBtn,
 body[data-layout-profile="wide"] .quickHost.open .panelCloseBtn {
   display: inline-flex;
@@ -1308,6 +1316,10 @@ body[data-layout-profile="wide"] .calHost .flatpickr-current-month,
 body[data-layout-profile="wide"] .calHost .flatpickr-prev-month,
 body[data-layout-profile="wide"] .calHost .flatpickr-next-month {
   height: 24px !important;
+}
+
+body[data-layout-profile="wide"] .calHost .flatpickr-months {
+  padding-right: 28px;
 }
 
 body[data-layout-profile="wide"] .calHost .flatpickr-current-month,
