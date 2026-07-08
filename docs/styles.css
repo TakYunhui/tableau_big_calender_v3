@@ -1228,6 +1228,10 @@ body[data-layout-profile="wide"] .calHost {
   margin-top: 0;
 }
 
+body[data-layout-profile="wide"] .quickHost {
+  min-height: 0;
+}
+
 body[data-layout-profile="wide"] .rangeBar.single-mode #dateSep,
 body[data-layout-profile="wide"] #dateSep {
   display: none !important;
@@ -1245,7 +1249,6 @@ body[data-layout-profile="wide"] #settingsBtn {
 }
 
 body[data-layout-profile="wide"] .calHost.open,
-body[data-layout-profile="wide"] .quickHost.open,
 body[data-layout-profile="wide"] .cfgPanel.open {
   position: absolute;
   top: var(--wide-panel-pad);
@@ -1256,6 +1259,20 @@ body[data-layout-profile="wide"] .cfgPanel.open {
   height: auto;
   max-width: none;
   max-height: none;
+  z-index: 18;
+}
+
+body[data-layout-profile="wide"] .quickHost.open {
+  position: absolute;
+  top: var(--wide-panel-pad);
+  right: calc(var(--wide-side-width) + var(--wide-panel-gap));
+  left: var(--wide-panel-pad);
+  bottom: auto;
+  width: auto;
+  height: auto;
+  min-height: 0;
+  max-height: calc(var(--frame-height) - (var(--wide-panel-pad) * 2));
+  overflow-y: auto;
   z-index: 18;
 }
 
