@@ -1510,11 +1510,11 @@ body[data-layout-profile="wide"][data-selection-kind="range"] .quickBtn {
 
 body[data-layout-profile="wide"][data-selection-kind="single"] .rangeLine {
   grid-template-columns: 1fr;
-  max-width: 152px;
-  width: 152px;
+  max-width: none;
+  width: 100%;
   grid-row: 3;
   align-self: stretch;
-  justify-self: end;
+  justify-self: stretch;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="single"] .quickHost.open {
@@ -1544,20 +1544,20 @@ body[data-layout-profile="wide"][data-selection-kind="single"] .quickBtn {
 }
 
 body[data-layout-profile="wide"][data-selection-kind="single"] .singleDateHelp {
-  justify-self: end;
-  width: max-content;
-  max-width: calc(var(--wide-single-side-width) - 12px);
-  text-align: right;
+  justify-self: stretch;
+  width: 100%;
+  max-width: none;
+  text-align: left;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="single"] .rangeBar {
-  left: calc(var(--wide-side-width) - var(--wide-single-side-width));
-  width: var(--wide-single-side-width);
-  justify-items: end;
+  left: calc(var(--wide-side-width) - 156px);
+  width: 156px;
+  justify-items: stretch;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="single"] .topActions {
-  justify-self: end;
+  justify-self: stretch;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="range"] #startSlot,
@@ -1572,7 +1572,7 @@ body[data-layout-profile="wide"][data-selection-kind="single"] .topActions {
   grid-auto-columns: max-content;
   justify-content: start;
   gap: 5px;
-  width: max-content;
+  width: 100%;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="single"] #quickModeBtn {
