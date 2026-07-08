@@ -1300,6 +1300,10 @@ body[data-layout-profile="wide"] .quickHost.open .panelCloseBtn {
   display: inline-flex;
 }
 
+body[data-layout-profile="wide"] .quickHost.open .panelCloseBtn {
+  right: 4px;
+}
+
 body[data-layout-profile="wide"] .calHost {
   padding: 3px 4px;
 }
