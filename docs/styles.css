@@ -1572,6 +1572,8 @@ body[data-layout-profile="wide"][data-selection-kind="single"] .rangeBar {
   left: auto;
   width: var(--wide-side-width);
   justify-items: stretch;
+  padding-left: 18px;
+  box-sizing: border-box;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="single"] .topActions {
