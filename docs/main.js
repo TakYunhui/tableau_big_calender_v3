@@ -1283,6 +1283,17 @@ function updateClosePanelButton() {
   btn.disabled = isApplying || !visible;
 }
 
+function closeActiveSelectionPanel() {
+  if (isQuickPickingMode()) {
+    cancelQuickSelection();
+    return;
+  }
+
+  if (isDateEditingState()) {
+    cancelRangeSelection();
+  }
+}
+
 function updateActionStates() {
   updatePrimaryModeButton();
   updateQuickModeButton();
@@ -1770,6 +1781,8 @@ function bindHandlers() {
   const quickModeBtn = qs("quickModeBtn");
   const applyBtn = qs("applyBtn");
   const closePanelBtn = qs("closePanelBtn");
+  const quickPanelCloseBtn = qs("quickPanelCloseBtn");
+  const calendarPanelCloseBtn = qs("calendarPanelCloseBtn");
   const settingsBtn = qs("settingsBtn");
   const cfgCloseBtn = qs("cfgCloseBtn");
   const cfgSaveBtn = qs("cfgSaveBtn");
@@ -1852,13 +1865,21 @@ function bindHandlers() {
   if (closePanelBtn) {
     closePanelBtn.onclick = (e) => {
       e.stopPropagation();
-      if (isQuickPickingMode()) {
-        cancelQuickSelection();
-        return;
-      }
-      if (isDateEditingState()) {
-        cancelRangeSelection();
-      }
+      closeActiveSelectionPanel();
+    };
+  }
+
+  if (quickPanelCloseBtn) {
+    quickPanelCloseBtn.onclick = (e) => {
+      e.stopPropagation();
+      closeActiveSelectionPanel();
+    };
+  }
+
+  if (calendarPanelCloseBtn) {
+    calendarPanelCloseBtn.onclick = (e) => {
+      e.stopPropagation();
+      closeActiveSelectionPanel();
     };
   }
 

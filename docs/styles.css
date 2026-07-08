@@ -1210,6 +1210,10 @@ body[data-layout-profile="wide"] #closePanelBtn {
   padding: 0 7px;
 }
 
+body[data-layout-profile="wide"] #closePanelBtn {
+  display: none !important;
+}
+
 body[data-layout-profile="wide"] .quickHost,
 body[data-layout-profile="wide"] .calHost {
   width: auto;
@@ -1261,6 +1265,31 @@ body[data-layout-profile="wide"] .quickHost,
 body[data-layout-profile="wide"] .calHost,
 body[data-layout-profile="wide"] .cfgPanel {
   border-radius: 14px;
+}
+
+body[data-layout-profile="wide"] .panelCloseBtn {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  width: 22px;
+  height: 22px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid rgba(128, 139, 158, 0.22);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  color: #697386;
+  font-size: 15px;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 3;
+}
+
+body[data-layout-profile="wide"] .calHost.open .panelCloseBtn,
+body[data-layout-profile="wide"] .quickHost.open .panelCloseBtn {
+  display: inline-flex;
 }
 
 body[data-layout-profile="wide"] .calHost {
