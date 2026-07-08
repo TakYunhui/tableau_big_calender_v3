@@ -871,8 +871,8 @@ html, body {
   --wide-side-width: 228px;
   --wide-panel-gap: 8px;
   --wide-panel-pad: 6px;
-  --wide-side-top: 8px;
-  --wide-side-height: 122px;
+  --wide-side-top: 2px;
+  --wide-side-height: 96px;
 }
 
 html,
@@ -1132,7 +1132,7 @@ body[data-layout-profile="wide"] .rangeBar {
   grid-template-rows: min-content min-content minmax(0, 1fr);
   align-content: start;
   justify-items: stretch;
-  gap: 4px;
+  gap: 2px;
   padding: 0;
   background: transparent;
   border-radius: 0;
@@ -1142,7 +1142,7 @@ body[data-layout-profile="wide"] .rangeBar {
 body[data-layout-profile="wide"] .rangeLine {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 4px;
+  gap: 2px;
   align-content: stretch;
   align-items: stretch;
   flex: 0 0 auto;
@@ -1156,10 +1156,10 @@ body[data-layout-profile="wide"] .rangeBar.single-mode .rangeLine {
 body[data-layout-profile="wide"] .singleDateHelp {
   display: block;
   grid-row: 1;
-  min-height: 11px;
+  min-height: 10px;
   padding: 0;
   color: #e5efff;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 700;
   line-height: 1.1;
   text-align: left;
@@ -1168,13 +1168,13 @@ body[data-layout-profile="wide"] .singleDateHelp {
 body[data-layout-profile="wide"] .dateSlot {
   display: grid;
   grid-template-columns: 28px minmax(0, 1fr);
-  gap: 4px;
+  gap: 3px;
   align-items: center;
   align-self: stretch;
 }
 
 body[data-layout-profile="wide"] .label {
-  font-size: 11px;
+  font-size: 10px;
   color: rgba(255, 255, 255, 0.96);
   font-weight: 800;
   letter-spacing: -0.02em;
@@ -1182,9 +1182,9 @@ body[data-layout-profile="wide"] .label {
 
 body[data-layout-profile="wide"] .dateValue {
   width: 100%;
-  min-height: 34px;
-  padding: 4px 10px;
-  font-size: 15px;
+  min-height: 28px;
+  padding: 3px 10px;
+  font-size: 14px;
   text-align: center;
   border-radius: 10px;
   box-sizing: border-box;
@@ -1197,7 +1197,7 @@ body[data-layout-profile="wide"] .topActions {
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
-  gap: 5px;
+  gap: 4px;
   margin-left: 0;
   grid-row: 2;
   width: 100%;
@@ -1207,9 +1207,9 @@ body[data-layout-profile="wide"] .topActions {
 body[data-layout-profile="wide"] .miniBtn {
   width: auto;
   min-width: 0;
-  height: 28px;
+  height: 26px;
   padding: 0 7px;
-  font-size: 11px;
+  font-size: 10px;
 }
 
 body[data-layout-profile="wide"] #closePanelBtn {
