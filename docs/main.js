@@ -30,11 +30,11 @@ const MOCK_DEFAULT_STATE = {
 const LAYOUT_PROFILE_BY_NAME = {
   wide: {
     frameWidth: 570,
-    frameHeight: 165,
-    rangeBarHeight: 165,
-    quickPanelMinHeight: 165,
-    calendarHeight: 165,
-    configPanelHeight: 165,
+    frameHeight: 215,
+    rangeBarHeight: 215,
+    quickPanelMinHeight: 215,
+    calendarHeight: 215,
+    configPanelHeight: 215,
   },
   compact: {
     frameWidth: 300,

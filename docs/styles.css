@@ -1,5 +1,5 @@
 :root {
-  --frame-width: 600px;
+  --frame-width: 570px;
   --range-bar-height: 50px;
   --quick-panel-min-height: 48px;
   --calendar-height: 156px;
@@ -865,15 +865,14 @@ html, body {
 }
 
 :root {
-  --frame-height: 150px;
+  --frame-height: 215px;
   --panel-surface: #f4f6f8;
   --panel-border: #d0d5dd;
-  --wide-side-width: 272px;
-  --wide-single-side-width: 220px;
+  --wide-side-width: 228px;
   --wide-panel-gap: 8px;
   --wide-panel-pad: 6px;
-  --wide-toast-left: 6px;
-  --wide-toast-max-width: calc(var(--wide-side-width) - 12px);
+  --wide-side-top: 8px;
+  --wide-side-height: 122px;
 }
 
 html,
@@ -1124,15 +1123,17 @@ body.panel-open:not([data-layout-profile="wide"]) .hint {
 
 body[data-layout-profile="wide"] .rangeBar {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: var(--wide-side-top);
+  right: var(--wide-panel-pad);
+  left: auto;
   width: var(--wide-side-width);
-  height: 100px;
+  height: var(--wide-side-height);
   display: grid;
   grid-template-rows: min-content min-content minmax(0, 1fr);
   align-content: start;
-  gap: 3px;
-  padding: 4px 6px 0 6px;
+  justify-items: stretch;
+  gap: 4px;
+  padding: 0;
   background: transparent;
   border-radius: 0;
   box-shadow: none;
@@ -1141,10 +1142,11 @@ body[data-layout-profile="wide"] .rangeBar {
 body[data-layout-profile="wide"] .rangeLine {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 6px;
+  gap: 4px;
   align-content: stretch;
   align-items: stretch;
   flex: 0 0 auto;
+  width: 100%;
 }
 
 body[data-layout-profile="wide"] .rangeBar.single-mode .rangeLine {
@@ -1160,6 +1162,7 @@ body[data-layout-profile="wide"] .singleDateHelp {
   font-size: 10px;
   font-weight: 700;
   line-height: 1.1;
+  text-align: left;
 }
 
 body[data-layout-profile="wide"] .dateSlot {
@@ -1197,6 +1200,8 @@ body[data-layout-profile="wide"] .topActions {
   gap: 5px;
   margin-left: 0;
   grid-row: 2;
+  width: 100%;
+  justify-content: flex-start;
 }
 
 body[data-layout-profile="wide"] .miniBtn {
@@ -1240,26 +1245,17 @@ body[data-layout-profile="wide"] #settingsBtn {
 }
 
 body[data-layout-profile="wide"] .calHost.open,
+body[data-layout-profile="wide"] .quickHost.open,
 body[data-layout-profile="wide"] .cfgPanel.open {
   position: absolute;
   top: var(--wide-panel-pad);
-  right: var(--wide-panel-pad);
+  right: calc(var(--wide-side-width) + var(--wide-panel-gap));
   bottom: var(--wide-panel-pad);
-  left: calc(var(--wide-side-width) + var(--wide-panel-gap));
+  left: var(--wide-panel-pad);
   width: auto;
   height: auto;
-  z-index: 18;
-}
-
-body[data-layout-profile="wide"] .quickHost.open {
-  position: absolute;
-  top: var(--wide-panel-pad);
-  left: calc(var(--wide-side-width) + var(--wide-panel-gap));
-  right: auto;
-  bottom: auto;
-  width: 304px;
-  max-width: calc(100% - var(--wide-side-width) - var(--wide-panel-gap) - (var(--wide-panel-pad) * 2));
-  max-height: calc(100% - (var(--wide-panel-pad) * 2));
+  max-width: none;
+  max-height: none;
   z-index: 18;
 }
 
@@ -1426,9 +1422,9 @@ body[data-layout-profile="wide"] .quickBtn {
 body[data-layout-profile="wide"] .hint {
   position: absolute;
   display: block !important;
-  left: 6px;
-  right: auto;
-  top: 104px;
+  right: var(--wide-panel-pad);
+  left: auto;
+  top: calc(var(--wide-side-top) + var(--wide-side-height) + 6px);
   bottom: auto;
   width: auto;
   max-width: calc(var(--wide-side-width) - 12px);
@@ -1449,12 +1445,12 @@ body[data-layout-profile="wide"] .hint:empty {
 
 body[data-layout-profile="wide"] .toast {
   position: absolute;
-  left: var(--wide-toast-left);
-  right: auto;
-  top: 104px;
+  right: var(--wide-panel-pad);
+  left: auto;
+  top: calc(var(--wide-side-top) + var(--wide-side-height) + 6px);
   bottom: auto;
   width: auto;
-  max-width: var(--wide-toast-max-width);
+  max-width: calc(var(--wide-side-width) - 12px);
   padding: 3px 8px;
   background: rgba(11, 19, 38, 0.84);
   border: 1px solid rgba(255, 255, 255, 0.14);
@@ -1474,7 +1470,7 @@ body[data-layout-profile="wide"] .toast.show {
 }
 
 body[data-layout-profile="wide"][data-selection-kind="range"] .rangeLine {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   grid-row: 3;
   align-self: stretch;
 }
@@ -1519,10 +1515,6 @@ body[data-layout-profile="wide"][data-selection-kind="single"] .rangeLine {
   justify-self: stretch;
 }
 
-body[data-layout-profile="wide"][data-selection-kind="single"] .quickHost.open {
-  width: 248px;
-}
-
 body[data-layout-profile="wide"][data-selection-kind="single"] .quickHost {
   padding: 9px 10px 10px;
 }
@@ -1553,14 +1545,10 @@ body[data-layout-profile="wide"][data-selection-kind="single"] .singleDateHelp {
 }
 
 body[data-layout-profile="wide"][data-selection-kind="single"] .rangeBar {
-  left: calc(var(--wide-side-width) - 156px);
-  width: 156px;
+  right: var(--wide-panel-pad);
+  left: auto;
+  width: var(--wide-side-width);
   justify-items: stretch;
-}
-
-body[data-layout-profile="wide"][data-selection-kind="single"] {
-  --wide-toast-left: calc(var(--wide-side-width) - 156px);
-  --wide-toast-max-width: 156px;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="single"] .topActions {
@@ -1613,16 +1601,6 @@ body[data-layout-profile="wide"] #closePanelBtn {
 
 body[data-layout-profile="wide"][data-selection-kind="single"] #rangeModeBtn {
   display: none !important;
-}
-
-body[data-layout-profile="wide"][data-selection-kind="single"] #endSlot {
-  grid-template-columns: 28px 96px;
-}
-
-body[data-layout-profile="wide"][data-selection-kind="single"] #endText {
-  width: 96px;
-  min-width: 96px;
-  max-width: 96px;
 }
 
 body[data-layout-profile="wide"][data-panel-kind="closed"] .quickHost,
