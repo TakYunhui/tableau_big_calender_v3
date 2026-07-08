@@ -869,6 +869,7 @@ html, body {
   --panel-surface: #f4f6f8;
   --panel-border: #d0d5dd;
   --wide-side-width: 272px;
+  --wide-label-width: 24px;
   --wide-date-value-width: 96px;
   --wide-single-cluster-width: 184px;
   --wide-panel-gap: 8px;
@@ -1169,8 +1170,8 @@ body[data-layout-profile="wide"] .singleDateHelp {
 
 body[data-layout-profile="wide"] .dateSlot {
   display: grid;
-  grid-template-columns: 28px var(--wide-date-value-width);
-  gap: 4px;
+  grid-template-columns: var(--wide-label-width) var(--wide-date-value-width);
+  gap: 2px;
   align-items: center;
   align-self: stretch;
   justify-content: start;
@@ -1494,7 +1495,7 @@ body[data-layout-profile="wide"][data-selection-kind="range"] .rangeLine {
   grid-row: 3;
   align-self: stretch;
   justify-self: start;
-  gap: 10px;
+  gap: 8px;
   width: max-content;
 }
 
