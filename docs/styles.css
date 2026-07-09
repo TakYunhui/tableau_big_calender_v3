@@ -871,6 +871,7 @@ html, body {
   --wide-side-width: 272px;
   --wide-label-width: 24px;
   --wide-date-value-width: 96px;
+  --wide-range-cluster-width: 252px;
   --wide-single-cluster-width: 184px;
   --wide-panel-gap: 8px;
   --wide-panel-pad: 6px;
@@ -1491,12 +1492,12 @@ body[data-layout-profile="wide"] .toast.show {
 }
 
 body[data-layout-profile="wide"][data-selection-kind="range"] .rangeLine {
-  grid-template-columns: repeat(2, max-content);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-row: 3;
   align-self: start;
   justify-self: start;
   gap: 8px;
-  width: max-content;
+  width: var(--wide-range-cluster-width);
   align-items: center;
   justify-content: start;
 }
@@ -1512,7 +1513,13 @@ body[data-layout-profile="wide"][data-selection-kind="range"] .topActions {
   justify-content: start;
   justify-self: start;
   gap: 5px;
-  width: max-content;
+  width: var(--wide-range-cluster-width);
+}
+
+body[data-layout-profile="wide"][data-selection-kind="range"] .singleDateHelp {
+  justify-self: start;
+  width: var(--wide-range-cluster-width);
+  max-width: none;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="range"] .quickGroups {
