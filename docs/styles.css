@@ -1209,6 +1209,7 @@ body[data-layout-profile="wide"] .topActions {
   grid-row: 2;
   width: 100%;
   justify-content: flex-start;
+  margin-bottom: 4px;
 }
 
 body[data-layout-profile="wide"] .miniBtn {
@@ -1518,6 +1519,7 @@ body[data-layout-profile="wide"][data-selection-kind="range"] .topActions {
   justify-self: start;
   gap: 5px;
   width: var(--wide-range-cluster-width);
+  margin-bottom: 4px;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="range"] .singleDateHelp {
@@ -1620,6 +1622,7 @@ body[data-layout-profile="wide"][data-selection-kind="single"] .topActions {
   justify-content: start;
   gap: 5px;
   width: var(--wide-single-cluster-width);
+  margin-bottom: 4px;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="single"] #quickModeBtn {
