@@ -984,14 +984,14 @@ body:not(.cfgPage) .miniBtn {
 }
 
 body:not(.cfgPage) .btn-range-active {
-  background: #dde7f7;
-  color: #18345d;
-  border-color: #a8bbdf;
+  background: #cfdbef;
+  color: #163556;
+  border-color: #90a8cf;
 }
 
 body:not(.cfgPage) .btn-range-active:hover:not(:disabled) {
-  background: #edf3ff;
-  border-color: #b8c8e6;
+  background: #dce6f7;
+  border-color: #9db4d7;
 }
 
 body[data-panel-kind="calendar"]:not(.cfgPage) #rangeModeBtn.btn-range-active {
@@ -1014,14 +1014,14 @@ body:not(.cfgPage) .btn-range-inactive:disabled {
 }
 
 body:not(.cfgPage) .btn-quick-active {
-  background: #d9efe1;
-  color: #175837;
-  border-color: #9dc5aa;
+  background: #cfe5d8;
+  color: #154e34;
+  border-color: #8eb39c;
 }
 
 body:not(.cfgPage) .btn-quick-active:hover:not(:disabled) {
-  background: #e8f7ee;
-  border-color: #add2b8;
+  background: #dceddf;
+  border-color: #99bea7;
 }
 
 body[data-panel-kind="quick"]:not(.cfgPage) #quickModeBtn.btn-quick-active {
@@ -1044,16 +1044,16 @@ body:not(.cfgPage) .btn-quick-inactive:disabled {
 }
 
 body:not(.cfgPage) .btn-primary-active {
-  background: #f2c94c !important;
-  color: #5b4300 !important;
-  border-color: #f2c94c !important;
+  background: #e5bc43 !important;
+  color: #523b00 !important;
+  border-color: #d8ab2d !important;
   opacity: 1 !important;
   box-shadow: 0 2px 8px rgba(173, 135, 13, 0.18) !important;
 }
 
 body:not(.cfgPage) .btn-primary-active:hover:not(:disabled) {
-  background: #f6d568 !important;
-  border-color: #f6d568 !important;
+  background: #ebc95d !important;
+  border-color: #dfba49 !important;
 }
 
 body:not(.cfgPage) .btn-primary-inactive,
@@ -1076,8 +1076,8 @@ body:not(.cfgPage) .btn-quick-cancel {
 
 body:not(.cfgPage) .settingsBtn {
   color: #ffffff;
-  background: #58709d;
-  border: 1px solid #7f96c0;
+  background: #51698f;
+  border: 1px solid #7188b0;
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
 }
@@ -1164,9 +1164,9 @@ body[data-layout-profile="wide"] .singleDateHelp {
   grid-row: 1;
   min-height: 10px;
   padding: 0;
-  color: #e5efff;
-  font-size: 9px;
-  font-weight: 700;
+  color: rgba(229, 239, 255, 0.7);
+  font-size: 8px;
+  font-weight: 600;
   line-height: 1.1;
   text-align: left;
 }
@@ -1214,9 +1214,9 @@ body[data-layout-profile="wide"] .topActions {
 body[data-layout-profile="wide"] .miniBtn {
   width: auto;
   min-width: 0;
-  height: 27px;
-  padding: 0 6px;
-  font-size: 10px;
+  height: 25px;
+  padding: 0 5px;
+  font-size: 11px;
 }
 
 body[data-layout-profile="wide"] #closePanelBtn {
@@ -1249,10 +1249,10 @@ body[data-layout-profile="wide"] .rangeBar.single-mode #endSlot {
 }
 
 body[data-layout-profile="wide"] #settingsBtn {
-  width: 28px;
-  min-width: 28px;
-  height: 28px;
-  font-size: 17px;
+  width: 25px;
+  min-width: 25px;
+  height: 25px;
+  font-size: 15px;
 }
 
 body[data-layout-profile="wide"] .calHost.open,
@@ -1639,16 +1639,16 @@ body[data-layout-profile="wide"][data-selection-kind="single"] #closePanelBtn {
 }
 
 body[data-layout-profile="wide"] #rangeModeBtn {
-  width: 48px;
+  width: 44px;
 }
 
 body[data-layout-profile="wide"] #quickModeBtn {
-  width: 72px;
+  width: 66px;
 }
 
 body[data-layout-profile="wide"] #applyBtn,
 body[data-layout-profile="wide"] #closePanelBtn {
-  width: 46px;
+  width: 42px;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="single"] #rangeModeBtn {
