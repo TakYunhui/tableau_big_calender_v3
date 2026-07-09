@@ -1132,7 +1132,7 @@ body[data-layout-profile="wide"] .rangeBar {
   width: var(--wide-side-width);
   height: var(--wide-side-height);
   display: grid;
-  grid-template-rows: min-content min-content minmax(0, 1fr);
+  grid-template-rows: min-content min-content min-content;
   align-content: start;
   justify-items: stretch;
   gap: 2px;
@@ -1493,7 +1493,7 @@ body[data-layout-profile="wide"] .toast.show {
 body[data-layout-profile="wide"][data-selection-kind="range"] .rangeLine {
   grid-template-columns: repeat(2, max-content);
   grid-row: 3;
-  align-self: stretch;
+  align-self: start;
   justify-self: start;
   gap: 8px;
   width: max-content;
@@ -1547,7 +1547,7 @@ body[data-layout-profile="wide"][data-selection-kind="single"] .rangeLine {
   max-width: var(--wide-single-cluster-width);
   width: var(--wide-single-cluster-width);
   grid-row: 3;
-  align-self: stretch;
+  align-self: start;
   justify-self: end;
 }
 
