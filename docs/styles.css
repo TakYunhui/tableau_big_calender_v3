@@ -1273,11 +1273,12 @@ body[data-layout-profile="wide"] .quickHost.open {
   position: absolute;
   top: var(--wide-popup-inset);
   right: calc(var(--wide-side-width) + var(--wide-popup-gap));
-  left: var(--wide-popup-inset);
+  left: auto;
   bottom: auto;
-  width: auto;
+  width: 336px;
   height: auto;
   min-height: 100px;
+  max-width: calc(var(--frame-width) - var(--wide-side-width) - var(--wide-popup-gap) - (var(--wide-popup-inset) * 2));
   max-height: calc(var(--frame-height) - (var(--wide-popup-inset) * 2));
   overflow-y: auto;
   z-index: 18;
@@ -1405,17 +1406,17 @@ body[data-layout-profile="wide"] .cfgPanel {
 }
 
 body[data-layout-profile="wide"] .quickHost {
-  padding: 10px 12px 11px;
+  padding: 10px 12px 12px;
 }
 
 body[data-layout-profile="wide"] .quickGroups {
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px 12px;
+  gap: 8px 10px;
 }
 
 body[data-layout-profile="wide"] .quickGroup--compare,
 body[data-layout-profile="wide"] .quickGroup--quarter {
-  grid-column: auto;
+  grid-column: 1 / -1;
 }
 
 body[data-layout-profile="wide"] .quickGroup--month {
@@ -1426,13 +1427,13 @@ body[data-layout-profile="wide"] .quickGroup {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   align-content: start;
-  gap: 6px;
+  gap: 5px;
   min-width: 0;
 }
 
 body[data-layout-profile="wide"] .quickBar {
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 5px;
   overflow: visible;
   padding-bottom: 0;
 }
@@ -1505,7 +1506,8 @@ body[data-layout-profile="wide"][data-selection-kind="range"] .rangeLine {
 }
 
 body[data-layout-profile="wide"][data-selection-kind="range"] .quickHost {
-  padding: 8px 10px 9px;
+  width: 336px;
+  padding: 8px 10px 10px;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="range"] .topActions {
@@ -1525,7 +1527,7 @@ body[data-layout-profile="wide"][data-selection-kind="range"] .singleDateHelp {
 }
 
 body[data-layout-profile="wide"][data-selection-kind="range"] .quickGroups {
-  gap: 8px 10px;
+  gap: 7px 9px;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="range"] .quickGroup {
@@ -1561,10 +1563,13 @@ body[data-layout-profile="wide"][data-selection-kind="single"] .rangeLine {
 }
 
 body[data-layout-profile="wide"][data-selection-kind="single"] .quickHost {
-  padding: 9px 10px 10px;
+  width: 252px;
+  min-height: 100px;
+  padding: 8px 10px 10px;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="single"] .quickGroups {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 8px 8px;
 }
 
