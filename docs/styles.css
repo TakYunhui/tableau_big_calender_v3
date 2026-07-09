@@ -1471,12 +1471,12 @@ body[data-layout-profile="wide"] .hint:empty {
 
 body[data-layout-profile="wide"] .toast {
   position: absolute;
-  right: var(--wide-panel-pad);
-  left: auto;
-  top: calc(var(--wide-side-top) + var(--wide-side-height) + 6px);
+  left: var(--toast-left);
+  right: auto;
+  top: var(--toast-top);
   bottom: auto;
   width: auto;
-  max-width: calc(var(--wide-side-width) - 12px);
+  max-width: var(--toast-max-width);
   padding: 3px 8px;
   background: rgba(11, 19, 38, 0.84);
   border: 1px solid rgba(255, 255, 255, 0.14);

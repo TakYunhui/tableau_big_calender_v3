@@ -91,6 +91,37 @@ function renderHint() {
   el.textContent = transientHintMessage || persistentHintMessage || "";
 }
 
+function updateWideToastAnchor() {
+  const body = document.body;
+  const frame = qs("appFrame");
+  const toast = qs("toast");
+  if (!body || !frame || !toast) return;
+
+  if (body.dataset.layoutProfile !== "wide") {
+    toast.style.removeProperty("--toast-left");
+    toast.style.removeProperty("--toast-top");
+    toast.style.removeProperty("--toast-max-width");
+    return;
+  }
+
+  const visibleDateValues = [qs("startText"), qs("endText")]
+    .filter((el) => el && el.offsetParent !== null);
+
+  if (!visibleDateValues.length) return;
+
+  const frameRect = frame.getBoundingClientRect();
+  const firstRect = visibleDateValues[0].getBoundingClientRect();
+  const lastRect = visibleDateValues[visibleDateValues.length - 1].getBoundingClientRect();
+
+  const left = Math.round(firstRect.left - frameRect.left);
+  const top = Math.round(lastRect.bottom - frameRect.top + 6);
+  const maxWidth = Math.max(132, Math.round(frameRect.right - firstRect.left - 10));
+
+  toast.style.setProperty("--toast-left", `${left}px`);
+  toast.style.setProperty("--toast-top", `${top}px`);
+  toast.style.setProperty("--toast-max-width", `${maxWidth}px`);
+}
+
 function setHint(msg) {
   transientHintMessage = msg || "";
   renderHint();
@@ -111,6 +142,7 @@ function showToast(msg) {
   if (!el) return;
 
   el.textContent = msg || "";
+  updateWideToastAnchor();
   el.classList.add("show");
 
   if (toastTimer) clearTimeout(toastTimer);
@@ -790,6 +822,7 @@ function updateDateFieldLayout() {
 
   const body = document.body;
   if (body) body.dataset.selectionKind = settings.kind;
+  updateWideToastAnchor();
 
   const frame = qs("appFrame");
   if (frame) frame.dataset.selectionKind = settings.kind;
@@ -823,6 +856,7 @@ function syncOpenStateClasses() {
 
   body.classList.toggle("panel-open", panelKind !== "closed");
   body.dataset.panelKind = panelKind;
+  updateWideToastAnchor();
 
   const frame = qs("appFrame");
   if (frame) frame.dataset.panelKind = panelKind;
