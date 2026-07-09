@@ -1529,11 +1529,16 @@ body[data-layout-profile="wide"][data-selection-kind="range"] .singleDateHelp {
 }
 
 body[data-layout-profile="wide"][data-selection-kind="range"] .quickGroups {
-  gap: 7px 9px;
+  gap: 8px 14px;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="range"] .quickGroup {
   gap: 4px;
+}
+
+body[data-layout-profile="wide"][data-selection-kind="range"] .quickGroup--month {
+  justify-self: end;
+  margin-right: 12px;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="range"] .quickGroupTitle {
@@ -1548,6 +1553,13 @@ body[data-layout-profile="wide"][data-selection-kind="range"] .quickGroupTitle::
 
 body[data-layout-profile="wide"][data-selection-kind="range"] .quickBar {
   gap: 4px;
+}
+
+body[data-layout-profile="wide"][data-selection-kind="range"] .quickGroup--compare,
+body[data-layout-profile="wide"][data-selection-kind="range"] .quickGroup--quarter {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: 18px;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="range"] .quickBtn {
