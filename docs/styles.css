@@ -875,9 +875,9 @@ html, body {
   --wide-single-cluster-width: 184px;
   --wide-panel-gap: 8px;
   --wide-panel-pad: 6px;
-  --wide-side-top: 2px;
-  --wide-side-height: 96px;
-  --wide-popup-gap: 4px;
+  --wide-side-top: 10px;
+  --wide-side-height: 86px;
+  --wide-popup-gap: 12px;
   --wide-popup-inset: 2px;
 }
 
@@ -1204,7 +1204,7 @@ body[data-layout-profile="wide"] .topActions {
   display: flex;
   align-items: center;
   flex-wrap: nowrap;
-  gap: 5px;
+  gap: 4px;
   margin-left: 0;
   grid-row: 2;
   width: 100%;
@@ -1214,8 +1214,8 @@ body[data-layout-profile="wide"] .topActions {
 body[data-layout-profile="wide"] .miniBtn {
   width: auto;
   min-width: 0;
-  height: 28px;
-  padding: 0 7px;
+  height: 27px;
+  padding: 0 6px;
   font-size: 10px;
 }
 
