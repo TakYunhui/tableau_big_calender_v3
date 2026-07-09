@@ -1497,10 +1497,22 @@ body[data-layout-profile="wide"][data-selection-kind="range"] .rangeLine {
   justify-self: start;
   gap: 8px;
   width: max-content;
+  align-items: center;
+  justify-content: start;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="range"] .quickHost {
   padding: 8px 10px 9px;
+}
+
+body[data-layout-profile="wide"][data-selection-kind="range"] .topActions {
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-auto-columns: max-content;
+  justify-content: start;
+  justify-self: start;
+  gap: 5px;
+  width: max-content;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="range"] .quickGroups {
