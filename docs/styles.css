@@ -877,6 +877,8 @@ html, body {
   --wide-panel-pad: 6px;
   --wide-side-top: 2px;
   --wide-side-height: 96px;
+  --wide-popup-gap: 4px;
+  --wide-popup-inset: 2px;
 }
 
 html,
@@ -1256,10 +1258,10 @@ body[data-layout-profile="wide"] #settingsBtn {
 body[data-layout-profile="wide"] .calHost.open,
 body[data-layout-profile="wide"] .cfgPanel.open {
   position: absolute;
-  top: var(--wide-panel-pad);
-  right: calc(var(--wide-side-width) + var(--wide-panel-gap));
-  bottom: var(--wide-panel-pad);
-  left: var(--wide-panel-pad);
+  top: var(--wide-popup-inset);
+  right: calc(var(--wide-side-width) + var(--wide-popup-gap));
+  bottom: var(--wide-popup-inset);
+  left: var(--wide-popup-inset);
   width: auto;
   height: auto;
   max-width: none;
@@ -1269,14 +1271,14 @@ body[data-layout-profile="wide"] .cfgPanel.open {
 
 body[data-layout-profile="wide"] .quickHost.open {
   position: absolute;
-  top: var(--wide-panel-pad);
-  right: calc(var(--wide-side-width) + var(--wide-panel-gap));
-  left: var(--wide-panel-pad);
+  top: var(--wide-popup-inset);
+  right: calc(var(--wide-side-width) + var(--wide-popup-gap));
+  left: var(--wide-popup-inset);
   bottom: auto;
   width: auto;
   height: auto;
   min-height: 100px;
-  max-height: calc(var(--frame-height) - (var(--wide-panel-pad) * 2));
+  max-height: calc(var(--frame-height) - (var(--wide-popup-inset) * 2));
   overflow-y: auto;
   z-index: 18;
 }
