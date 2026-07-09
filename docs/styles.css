@@ -1325,7 +1325,7 @@ body[data-layout-profile="wide"] .quickHost.open .panelCloseBtn {
 }
 
 body[data-layout-profile="wide"] .quickHost.open .panelCloseBtn {
-  right: 8px;
+  right: 10px;
 }
 
 body[data-layout-profile="wide"] .calHost {
@@ -1407,7 +1407,7 @@ body[data-layout-profile="wide"] .cfgPanel {
 }
 
 body[data-layout-profile="wide"] .quickHost {
-  padding: 10px 14px 12px 16px;
+  padding: 10px 14px 12px 20px;
 }
 
 body[data-layout-profile="wide"] .quickGroups {
@@ -1508,7 +1508,7 @@ body[data-layout-profile="wide"][data-selection-kind="range"] .rangeLine {
 
 body[data-layout-profile="wide"][data-selection-kind="range"] .quickHost {
   width: 336px;
-  padding: 8px 12px 10px 16px;
+  padding: 8px 12px 10px 20px;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="range"] .topActions {
@@ -1567,7 +1567,7 @@ body[data-layout-profile="wide"][data-selection-kind="single"] .rangeLine {
 body[data-layout-profile="wide"][data-selection-kind="single"] .quickHost {
   width: 252px;
   min-height: 100px;
-  padding: 8px 12px 10px 16px;
+  padding: 8px 12px 10px 20px;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="single"] .quickGroups {
