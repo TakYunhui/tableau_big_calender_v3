@@ -1563,10 +1563,19 @@ body[data-layout-profile="wide"][data-selection-kind="range"] .quickGroup--quart
   column-gap: 18px;
 }
 
+body[data-layout-profile="wide"][data-selection-kind="range"] .quickGroup--compare {
+  grid-template-columns: minmax(0, 1fr);
+  column-gap: 0;
+}
+
 body[data-layout-profile="wide"][data-selection-kind="range"] .quickGroup--compare .quickBar,
 body[data-layout-profile="wide"][data-selection-kind="range"] .quickGroup--quarter .quickBar {
   justify-content: flex-start;
   justify-self: end;
+}
+
+body[data-layout-profile="wide"][data-selection-kind="range"] .quickGroup--compare .quickBar {
+  justify-self: start;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="range"] .quickBtn {
