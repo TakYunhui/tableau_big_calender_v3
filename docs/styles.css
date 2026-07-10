@@ -1558,8 +1558,15 @@ body[data-layout-profile="wide"][data-selection-kind="range"] .quickBar {
 body[data-layout-profile="wide"][data-selection-kind="range"] .quickGroup--compare,
 body[data-layout-profile="wide"][data-selection-kind="range"] .quickGroup--quarter {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  grid-template-columns: max-content minmax(0, 1fr);
+  align-items: start;
   column-gap: 18px;
+}
+
+body[data-layout-profile="wide"][data-selection-kind="range"] .quickGroup--compare .quickBar,
+body[data-layout-profile="wide"][data-selection-kind="range"] .quickGroup--quarter .quickBar {
+  justify-content: flex-start;
+  justify-self: end;
 }
 
 body[data-layout-profile="wide"][data-selection-kind="range"] .quickBtn {
